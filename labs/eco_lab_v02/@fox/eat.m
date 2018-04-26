@@ -44,7 +44,7 @@ csep=sqrt((rpos(:,1)-pos(:,1)).^2+(rpos(:,2)-pos(:,2)).^2);  %calculate distance
 [d,ind]=min(csep);                                            %d is distance to closest rabbit, ind is index of that rabbit
 nrst=rb(ind);                                                %index of nearest rabbit(s)
 
-if d<=spd&length(nrst)>0    %if there is at least one  rabbit within the search radius        
+if d<=spd & length(nrst)>0    %if there is at least one  rabbit within the search radius        
     if length(nrst)>1       %if more than one rabbit located at same distance then randomly pick one to head towards
         s=round(rand*(length(nrst)-1))+1;
         nrst=nrst(s);

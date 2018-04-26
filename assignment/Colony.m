@@ -25,6 +25,23 @@ classdef Colony < handle
                     error('Invalid no. of input arguments for colony')
             end
         end
+        
+        function ants=generateAnts(self, ratio, size)
+            scouts = size * (1-ratio);
+            ants = Ant.empty(0,0);
+            for i = 1:1:scouts
+                ants(i) = ScoutAnt(self.pos, self.id);
+            end
+            
+            workers = size * ratio;
+            
+            for i = 1:1:workers
+                ants(i) = WorkerAnt(self.pos, self.id);
+            end
+            
+            ants = ratio;
+        end
+            
        
     end
 end

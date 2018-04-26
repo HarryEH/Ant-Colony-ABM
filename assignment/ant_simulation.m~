@@ -1,0 +1,13 @@
+environment_size = 1000;
+colony_count = 2;
+colony_ratios = [1, 0.5]; % scout / worker
+colony_size = 40;
+env = Environment(environment_size, colony_count, colony_ratios, colony_size);
+clear environment_size colony_count colony_ratios colony_size;
+
+% simulation_length = 10000;
+% % Simulation
+% for step = 1:1:simulation_length
+%     
+% end
+    
