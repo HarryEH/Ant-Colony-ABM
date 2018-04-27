@@ -34,9 +34,14 @@ classdef Environment < handle
             end
         end
         
-        function flag=step(obj, iter)
+        function flag = step(obj, iter)
             flag = false;
         end
+        
+        function flag = checkForFood(self, pos)
+            flag = self.environment(pos(1), pos(2)) > 0;
+        end
+        
         
     end
 end
