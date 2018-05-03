@@ -29,14 +29,34 @@ classdef Colony < handle
         function generateAnts(self, ratio, size)
             scouts = double(int16(size * (1-ratio)));
             self.ants = Ant.empty(0,0);
+            
+            ant_lifespan = 1002;
+            scout_speed  = 1;
+            
+            scout_strength = 30;
+           
+            worker_speed = 0.3;
+            worker_strength = 100;
+            
             for i = 1:1:scouts
-                self.ants(i) = ScoutAnt(self.pos, self.id);
+                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout);
             end
             
-            workers = double(int16(size * ratio));
-                        
-            for i = scouts:1:workers
-                self.ants(i) = WorkerAnt(self.pos, self.id);
+            for i = scouts:1:size
+                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, worker_speed, worker_strength, self.id, AntType.Worker);
+            end
+            
+        end
+        
+        function step(self, env)
+            
+            for i = 1:1:length(self.ants)
+                self.ants(i).step(env);
+                
+                % check to see if we need to kill ants 
+                if(self.ants(i).energy == 0)
+                    self.ants(i) = Ant();
+                end
             end
             
         end

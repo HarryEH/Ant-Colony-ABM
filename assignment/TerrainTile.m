@@ -18,6 +18,13 @@ classdef TerrainTile < handle
             end
         end
         
+        function step(self)
+            for i = 1:1:length(self.pheromone)
+                self.pheromone(i).step();
+            end
+            
+        end
+        
         function flag=updatePheromone(obj, pheromone)
             switch pheromone.type                  
                 case PheromoneType.Exploratory

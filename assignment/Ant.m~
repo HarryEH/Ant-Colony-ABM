@@ -52,13 +52,11 @@ classdef Ant < handle
             if(self.carrying == 0)
                 if (env.checkForFood([x1,y1]))
                     if (env.environment(x1,y1).food < self.strength)
-                        disp("test");
                         self.carrying = env.environment(x1,y1).food;
                         env.environment(x1,y1).food = 0;
                     else
-                        disp("test2");
                         self.carrying = self.strength;
-                        env.environment(x1,y1).food = env.environment(x1,y1).food - self.strength;
+                        env.environment(x1,y1).food =  - self.strength;
                     end
                 else
                     p = Pheromone(self.pheromone_span, PheromoneType.Exploratory);

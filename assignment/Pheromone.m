@@ -5,6 +5,7 @@ classdef Pheromone < handle
     properties
         level;
         type;
+        decay_rate = 1;
     end
     methods     
         function p=Pheromone(varargin) 
@@ -19,6 +20,12 @@ classdef Pheromone < handle
                 case 2 % create a new pheromone
                     p.level = varargin{1};% pheromone level
                     p.type  = varargin{2};% pheromone type                 
+            end
+        end
+        
+        function step(self) 
+            if (self.level ~= 0)
+                self.level = self.level - self.decay_rate;
             end
         end
        
