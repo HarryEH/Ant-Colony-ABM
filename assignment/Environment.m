@@ -37,6 +37,8 @@ classdef Environment < handle
         
         function flag = step(self)
             
+            self.generateFood();
+            
             for i = 1:1:length(self.colonies)
                 self.colonies(i).step(self);
             end
@@ -56,7 +58,6 @@ classdef Environment < handle
         
         function generateFood(self)
             for i = 1:5:self.size
-                disp(i);
                 self.environment(i,i).food = 100;
             end
         end

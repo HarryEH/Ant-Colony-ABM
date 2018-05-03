@@ -43,15 +43,10 @@ classdef Ant < handle
             % Increase the age
             self.ageStep();
             
-            self.moveStep(env);
-            
             self.energyStep(env);
             
             [x1, y1] = convert_pos(self.pos(1), self.pos(2));
             
-            if (x1 == y1)
-               
-            end
             
             if(self.carrying == 0)
                 if (env.checkForFood([x1,y1]))
@@ -62,15 +57,29 @@ classdef Ant < handle
                         self.carrying = self.strength;
                         env.environment(x1,y1).food = env.environment(x1,y1).food - self.strength;
                     end
+                        
                 else
                     p = Pheromone(self.pheromone_span, PheromoneType.Exploratory);
                     env.environment(x1, y1).updatePheromone(p);
-                end 
+                end
             else
-                % lay food carrying pheremone
-                p = Pheromone(self.pheromone_span, PheromoneType.Exploratory);
-                env.environment(x1, y1).updatePheromone(p);
+                [c_x, c_y] = convert_pos(env.colonies(self.colony).pos(1), ...
+                                         env.colonies(self.colony).pos(2));
+                
+                if ( c_x == self.pos(1) && c_y == self.pos(2) )
+                    % dump food in the colony
+                    env.colonies(self.colony).energy = env.colonies(self.colony).energy + self.carrying;
+                    self.carrying = 0;
+                    disp('reached the colony');
+                else
+                    % lay food carrying pheremone
+                    p = Pheromone(self.pheromone_span, PheromoneType.Food);
+                    env.environment(x1, y1).updatePheromone(p);
+                end
+                
             end
+            
+            self.moveStep(env.size, env.colonies(self.colony).pos);
             
             flag = false;
         end
@@ -79,16 +88,45 @@ classdef Ant < handle
             self.age = self.age + 1;
         end
         
-        function moveStep(self,env)
-            theta = rand() * 2*pi;
+        function moveStep(self,size, colony_pos)
             
-            x = self.pos(1) + (self.speed * cos(theta));
-            y = self.pos(2) + (self.speed * sin(theta));
-            
-            [x1, y1] = bound_xy(env.size, x, y);
-            self.pos = [x1, y1];
+            if (self.carrying == 0)
+                self.randomMove(size);
+            else
+                self.moveToColony(size, colony_pos);
+            end
+          
             
         end
+        
+        function randomMove(self, size) 
+            theta = rand() * 2*pi;
+            
+            self.doMove(theta, size);
+        end
+        
+        function moveToColony(self, size, pos)
+                        
+            direc_x = pos(1);
+            direc_y = pos(2);
+            
+            current_x = self.pos(1);
+            current_y = self.pos(2);
+            
+            theta = atan2((direc_x - current_x) , (direc_y - current_y));
+  
+            self.doMove(theta, size);
+
+        end
+        
+        function doMove(self, theta, size)
+            x = self.pos(1) + (self.speed * sin(theta));
+            y = self.pos(2) + (self.speed * cos(theta));
+            
+            [x1, y1] = bound_xy(size, x, y);
+            self.pos = [x1, y1];
+        end
+        
         
         function energyStep(self, env)
             % Decrease the energy if not in colony

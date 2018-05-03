@@ -5,7 +5,7 @@ classdef Pheromone < handle
     properties
         level;
         type;
-        decay_rate = 1;
+        decay_rate = 0;
     end
     methods     
         function p=Pheromone(varargin) 
