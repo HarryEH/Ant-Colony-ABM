@@ -51,7 +51,7 @@ classdef Environment < handle
         end
         
         function flag = checkForFood(self, pos)
-            flag = self.environment(pos(1), pos(2)) > 0;
+            flag = self.environment(pos(1), pos(2)).food > 0;
         end
         
         function generateFood(self)

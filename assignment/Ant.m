@@ -49,14 +49,16 @@ classdef Ant < handle
             
             [x1, y1] = convert_pos(self.pos(1), self.pos(2));
             
+            if (x1 == y1)
+               
+            end
+            
             if(self.carrying == 0)
                 if (env.checkForFood([x1,y1]))
                     if (env.environment(x1,y1).food < self.strength)
-                        disp("test");
                         self.carrying = env.environment(x1,y1).food;
                         env.environment(x1,y1).food = 0;
                     else
-                        disp("test2");
                         self.carrying = self.strength;
                         env.environment(x1,y1).food = env.environment(x1,y1).food - self.strength;
                     end
