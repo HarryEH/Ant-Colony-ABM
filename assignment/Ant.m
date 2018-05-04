@@ -65,8 +65,9 @@ classdef Ant < handle
             else
                 [c_x, c_y] = convert_pos(env.colonies(self.colony).pos(1), ...
                                          env.colonies(self.colony).pos(2));
-                
-                if ( c_x == self.pos(1) && c_y == self.pos(2) )
+                                  
+                [ant_x, ant_y] = convert_pos(self.pos(1), self.pos(2));
+                if ( c_x == ant_x && c_y == ant_y )
                     % dump food in the colony
                     env.colonies(self.colony).energy = env.colonies(self.colony).energy + self.carrying;
                     self.carrying = 0;
@@ -79,7 +80,7 @@ classdef Ant < handle
                 
             end
             
-            self.moveStep(env.size, env.colonies(self.colony).pos);
+            self.moveStep(env.size, env.colonies(self.colony).pos, env);
             
             flag = false;
         end
@@ -88,10 +89,12 @@ classdef Ant < handle
             self.age = self.age + 1;
         end
         
-        function moveStep(self,size, colony_pos)
+        function moveStep(self, size, colony_pos, env)
             
             if (self.carrying == 0)
                 self.randomMove(size);
+            elseif (self.detectFoodPheromone(env))
+                self.followFood(size, colony_pos);
             else
                 self.moveToColony(size, colony_pos);
             end
@@ -119,6 +122,11 @@ classdef Ant < handle
 
         end
         
+        function followFood(self, size, pos, env)
+            % follow the food trail, likely have to move away from the
+            % colony
+        end
+        
         function doMove(self, theta, size)
             x = self.pos(1) + (self.speed * sin(theta));
             y = self.pos(2) + (self.speed * cos(theta));
@@ -126,6 +134,13 @@ classdef Ant < handle
             [x1, y1] = bound_xy(size, x, y);
             self.pos = [x1, y1];
         end
+        
+        function flag = detectFoodPheromone(self, env)
+            flag = false;
+            % detect if there is food pheromone around
+        end
+        
+       
         
         
         function energyStep(self, env)

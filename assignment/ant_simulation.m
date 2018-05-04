@@ -10,17 +10,22 @@ toc;
 disp('********************************');
 
 tic;
-simulation_length = 300;
+simulation_length = 1000;
 % Simulation
 for step = 1:1:simulation_length
     
-    env.step();
+    env.step(step);
     
 end
 toc;
 
-plot_ants_colonies(env.colonies, colony_count, colony_ratios);
+plot_ants_colonies(env.colonies, colony_count, colony_ratios, env.size);
 plot_pheromones(env);
+
+% carrying 
+for i = 1:1:length(env.colonies(1).ants)
+    disp(env.colonies(1).ants(i).carrying);
+end
 
 % Clear smelly stuff
 clear environment_size colony_count colony_ratios colony_size;

@@ -35,9 +35,11 @@ classdef Environment < handle
             end
         end
         
-        function flag = step(self)
+        function flag = step(self, iter)
             
-            self.generateFood();
+            if( mod(iter, 10) == 0)
+                self.generateFood();
+            end
             
             for i = 1:1:length(self.colonies)
                 self.colonies(i).step(self);
@@ -57,8 +59,9 @@ classdef Environment < handle
         end
         
         function generateFood(self)
+            % TODO make this random
             for i = 1:5:self.size
-                self.environment(i,i).food = 100;
+                self.environment(i,i).food = 200;
             end
         end
         

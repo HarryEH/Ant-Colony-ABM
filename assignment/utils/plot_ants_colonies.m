@@ -1,4 +1,4 @@
-function [  ] = plot_ants_colonies( colonies, colony_size, colony_ratios )
+function [  ] = plot_ants_colonies( colonies, colony_size, colony_ratios, size )
 %PLOT_ANTS_COLONIES Summary of this function goes here
 %   Detailed explanation goes here
     %colonies
@@ -39,6 +39,8 @@ for i = 1:1:length(colonies)
         end
     end
         
+    xlim([0 size])
+    ylim([0 size])
     scatter(scout_x, scout_y, [], c(i), 'x');
     scatter(worker_x, worker_y, [], c(i), 'o');
 end

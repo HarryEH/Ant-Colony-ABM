@@ -30,7 +30,9 @@ for i = 1:1:env.size
     end
 end
 
-scatter(ex_x, ex_y, [], 'r.');
+% scatter(ex_x, ex_y, [], 'r.');
+xlim([0 env.size])
+ylim([0 env.size])
 scatter(food_x, food_y, [], 'b.');
 
 
