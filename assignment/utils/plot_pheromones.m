@@ -1,8 +1,7 @@
 function [] = plot_pheromones( env )
 %PLOT_PHEROMONES Summary of this function goes here
 %   Detailed explanation goes here
-
-figure;
+figure; 
 hold on;
 
 ex_x = [];

@@ -35,9 +35,9 @@ classdef Environment < handle
             end
         end
         
-        function flag = step(self, iter)
+        function step(self, iter)
             
-            if( mod(iter, 10) == 0)
+            if ( mod(iter, 50) == 0)
                 self.generateFood();
             end
             
@@ -51,7 +51,6 @@ classdef Environment < handle
                 end
             end
             
-            flag = false;
         end
         
         function flag = checkForFood(self, pos)
@@ -59,10 +58,16 @@ classdef Environment < handle
         end
         
         function generateFood(self)
-            % TODO make this random
-            for i = 1:5:self.size
-                self.environment(i,i).food = 200;
+            
+            len = self.size;
+            
+            for i = 1:1:len
+                [x,y] = bound_xy(self.size, int16(rand()*self.size), ...
+                                 int16(rand()*self.size));
+                
+                self.environment(x,y).food = rand() * 200;
             end
+            
         end
         
         
