@@ -25,16 +25,14 @@ classdef TerrainTile < handle
             
         end
         
-        function flag=updatePheromone(obj, pheromone)
+        function updatePheromone(self, pheromone, id)
             switch pheromone.type                  
                 case PheromoneType.Exploratory
-                    obj.pheromone(1) = pheromone;
-                    flag = true;
+                    self.pheromone(1).level = self.pheromone(1).level + pheromone.level;
+                    self.pheromone(1).addColony(id);
                 case PheromoneType.Food
-                    obj.pheromone(2) = pheromone;
-                    flag = true;
-                otherwise
-                    flag = false;
+                    self.pheromone(2).level = self.pheromone(2).level + pheromone.level;
+                    self.pheromone(2).addColony(id);
             end
         end
         

@@ -1,8 +1,7 @@
 function [] = plot_pheromones( env )
 %PLOT_PHEROMONES Summary of this function goes here
 %   Detailed explanation goes here
-
-figure;
+figure; 
 hold on;
 
 ex_x = [];
@@ -30,7 +29,9 @@ for i = 1:1:env.size
     end
 end
 
-scatter(ex_x, ex_y, [], 'r.');
+% scatter(ex_x, ex_y, [], 'r.');
+xlim([0 env.size])
+ylim([0 env.size])
 scatter(food_x, food_y, [], 'b.');
 
 
