@@ -67,19 +67,42 @@ classdef Ant < handle
                     self.moveToColony(size, colony_pos);
                 else
                     [flag, x, y] = env.detectFoodPheromone(self.pos, self.colony);
+                    
                     if (flag)
                         self.followFood(size, colony_pos, x, y, env);
                     else
-                        self.randomMove(size);
+                        self.randomMove(size, colony_pos);
                     end
+                    
                 end
             else
                 self.moveToColony(size, colony_pos);
             end  
         end
         
-        function randomMove(self, size) 
-            theta = rand() * 2*pi;
+        function randomMove(self, size, colony_pos)
+            if (self.age < 5)
+                theta = rand() * 2*pi;
+%             elseif (self.age < 15)
+%                 mid = theta_between_points(self.pos(1), self.pos(2), ...
+%                     colony_pos(1), colony_pos(2));
+%                 
+%                 lower = (-mid) - (pi/2);
+%                 
+%                 if (lower < 0)
+%                     lower = (2*pi) + lower;
+%                 end
+%                 
+%                 upper = (-mid) + (pi/2);
+%                 
+%                 if (upper > (2*pi))
+%                     upper = upper - (2*pi);
+%                 end
+%                 
+%                 theta = (rand*(upper-lower)) + lower;
+            else
+                theta = rand() * 2*pi;
+            end
             
             self.doMove(theta, size);
         end
@@ -93,7 +116,7 @@ classdef Ant < handle
 
         end
         
-        function followFood(self, size, pos, x , y, env)
+        function followFood(self, size, colony_pos, x , y, env)
             % follow the food trail, likely have to move away from the
             % colony
             if length(x) ~= 1
@@ -118,7 +141,7 @@ classdef Ant < handle
                                             .ants(self.id) = self.id;
                     self.doMove(thetas(index), size);
                 else
-                    self.randomMove(size);
+                    self.randomMove(size, colony_pos);
                 end
    
             else  
@@ -126,7 +149,7 @@ classdef Ant < handle
                 theta = theta_between_points( self.pos(1), self.pos(2),...
                                               x, y);
                 if self.hasAntVisitedPheromone(env, x, y)
-                    self.randomMove(size);
+                    self.randomMove(size, colony_pos);
                 else
                     env.environment(x,y).pheromone(2) ...
                                                 .ants(self.id) = self.id;
