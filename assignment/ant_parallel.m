@@ -1,5 +1,6 @@
 %create parallel pool of workers on the local node
 %Ensure that this is the same number as what you requested from the scheduler
+addpath(genpath(pwd));
 
 cpu = 8;
 
