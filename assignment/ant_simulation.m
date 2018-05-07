@@ -1,8 +1,7 @@
 % Values
 environment_size = 50;
 colony_count = 1;
-worker_percentage = [0.5];
-%[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+worker_percentage = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 colony_size = 20;
 simulation_length  = 1000;
 number_simulations = 1;
@@ -11,6 +10,7 @@ RECORD = number_simulations == 1 && true;
 
 if RECORD
     test = figure;
+    set(test, 'Visible', 'off');
     v = VideoWriter('assignment/video/food_pheromones.avi', 'Motion JPEG AVI');
     open(v);
 end
@@ -53,7 +53,8 @@ for simu = 1:1:number_simulations
 end
 
 
-% figure;
+% fig = figure;
+% set(fig, 'Visible', 'off');
 % hold on;
 % cols = distinguishable_colors(11);
 % for i = 1:1:number_simulations
@@ -65,6 +66,7 @@ end
 % title('Colony Energy vs Iteration for various percentages of Worker Ant');
 % xlabel('Iteration');
 % ylabel('Colony Energy');
+% saveas(fig,'colony_energy_vs_iteration.png');
 
 
 if RECORD

@@ -210,6 +210,9 @@ classdef Ant < handle
             [x1, y1] = convert_pos(self.pos(1), self.pos(2));
             
             if (self.carrying ~= 0)
+                p = Pheromone(self.pheromone_span, PheromoneType.Exploratory);
+                env.environment(x1, y1).updatePheromone(p, self.colony);
+            else
                 p = Pheromone(self.pheromone_span, PheromoneType.Food);
                 env.environment(x1, y1).updatePheromone(p, self.colony);
             end
