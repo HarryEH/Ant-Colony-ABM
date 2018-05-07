@@ -7,6 +7,7 @@ classdef Pheromone < handle
         type;
         colony;
         decay_rate = 1;
+        ants;
     end
     methods     
         function p=Pheromone(varargin) 
@@ -16,10 +17,13 @@ classdef Pheromone < handle
                     p.level  = [];
                     p.type   = [];
                     p.colony = [];
+                    p.ants   = [];
+                    
                 case 2 % create a new pheromone
                     p.level  = varargin{1};% pheromone level
                     p.type   = varargin{2};% pheromone type
                     p.colony = [];% pheromone type
+                    p.ants   = zeros(1,25);
             end
         end
         
@@ -30,6 +34,10 @@ classdef Pheromone < handle
                 if max(self.colony) == 0
                   self.colony = [];
                 end
+            end
+            
+            if (self.level == 0 && max(self.ants) ~= 0) 
+                self.ants = zeros(1,25);
             end
         end
         

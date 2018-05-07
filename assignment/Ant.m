@@ -2,7 +2,8 @@
 % author - Harry Howarth
 % date - 26/04/18
 classdef Ant < handle
-    properties          
+    properties
+        id;
         age; 
         energy;
         carrying; 
@@ -21,7 +22,8 @@ classdef Ant < handle
                     a.carrying = []; a.pos      = [];
                     a.speed    = []; a.colony   = [];
                     a.type     = []; a.strength = [];
-                case 8 % Create a new Ant
+                    a.id       = [];
+                case 9 % Create a new Ant
                     a.age      = varargin{1};% Age of Ant
                     a.energy   = varargin{2};% Current energy 
                     a.carrying = varargin{3};% Current amount of food that you're carrying
@@ -30,6 +32,7 @@ classdef Ant < handle
                     a.strength = varargin{6};% Strength of the ant
                     a.colony   = varargin{7};% Colony that the any belongs to 
                     a.type     = varargin{8};% type
+                    a.id       = varargin{9};% type
             end
         end
         
@@ -87,14 +90,14 @@ classdef Ant < handle
         
         function moveStep(self, size, colony_pos, env)
             if (self.carrying == 0)
-                self.randomMove(size);
-            else     
                 [flag, x, y] = self.detectFoodPheromone(env);
                 if (flag)
-                    self.followFood(size, colony_pos, x, y);
+                    self.followFood(size, colony_pos, x, y, env);
                 else
-                    self.moveToColony(size, colony_pos);
+                    self.randomMove(size);
                 end
+            else     
+                self.moveToColony(size, colony_pos);
             end  
         end
         
@@ -113,30 +116,47 @@ classdef Ant < handle
 
         end
         
-        function followFood(self, size, pos, x , y)
+        function followFood(self, size, pos, x , y, env)
             % follow the food trail, likely have to move away from the
             % colony
             if length(x) ~= 1
                 
-                colony_theta = theta_between_points( self.pos(1), ... 
-                                              self.pos(2), pos(1), pos(2));
-                
-                best = 0;
+                xs = [];
+                ys = [];
+                thetas = [];
                 
                 for i = 1:1:length(x)
-                    theta = theta_between_points( self.pos(1), self.pos(2),...
+                    if ( ~self.hasAntVisitedPheromone(env, x(i), y(i)) )
+                        theta = theta_between_points( self.pos(1), self.pos(2),...
                                               x(i), y(i));
-                    if abs(diff(colony_theta, theta)) > best
-                        best = theta;
+                        thetas(length(thetas)+1) = theta;
+                        xs(length(xs)+1) = x(i);
+                        ys(length(ys)+1) = y(i);
                     end
                 end
                 
-                self.doMove(best, size);
-                
+                if (~isempty(thetas))
+                    index = randi([1, length(thetas)],1,1);
+                    env.environment(xs(index),ys(index)).pheromone(2) ...
+                                            .ants(self.id) = self.id;
+                    self.doMove(thetas(index), size);
+                else
+                    self.randomMove(size);
+                end
+   
             else  
+               
                 theta = theta_between_points( self.pos(1), self.pos(2),...
                                               x, y);
-                self.doMove(theta, size);  
+               
+                if self.hasAntVisitedPheromone(env, x, y)
+                    self.randomMove(size);
+                else
+                    env.environment(x,y).pheromone(2) ...
+                                                .ants(self.id) = self.id;
+                    self.doMove(theta, size);
+                end
+                  
             end
             
         end
@@ -189,6 +209,10 @@ classdef Ant < handle
                 % maybe based on how much its carrying???
             self.energy = self.energy - 1;% does what they are carrying effect this????
 %             end
+        end
+        
+        function flag = hasAntVisitedPheromone(self, env, x, y)
+            flag = env.environment(x,y).pheromone(2).ants(self.id) ~= 0;
         end
        
     end

@@ -31,19 +31,19 @@ classdef Colony < handle
             self.ants = Ant.empty(0,0);
             
             ant_lifespan = 150;% THIS IS ALSO HARDCODED INTO AN ANT RULE
-            scout_speed  = 2;
+            scout_speed  = 1;
             
             scout_strength = 50;
            
-            worker_speed = 1;
+            worker_speed = 0.667;
             worker_strength = 100;
             
             for i = 1:1:scouts
-                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout);
+                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);
             end
             
             for i = scouts:1:size
-                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, worker_speed, worker_strength, self.id, AntType.Worker);
+                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, worker_speed, worker_strength, self.id, AntType.Worker, i);
             end
             
         end
