@@ -44,10 +44,13 @@ for i = 1:1:length(colonies)
     xlim([0 size])
     ylim([0 size])
     scatter(scout_x, scout_y, [], c(i), 'x');
+    legend('Scouts')
     scatter(worker_x, worker_y, [], c(i), 'o');
+    legend('Workers')
 end
 
 scatter(colonies_x, colonies_y, [], 'c*');
+legend('Food', 'Food Pheromones', 'Scout', 'Worker', 'Colony')
 
 end
 

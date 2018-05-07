@@ -5,6 +5,7 @@ function [] = plot_food_pheromones( env )
 [food_x, food_y] = generate_food_pheromones(env);
 
 scatter(food_x, food_y, [], 'b.');
+legend('food pheromones')
 
 xlim([0 env.size]);
 ylim([0 env.size]);

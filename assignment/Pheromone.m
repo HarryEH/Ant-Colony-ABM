@@ -8,6 +8,7 @@ classdef Pheromone < handle
         colony;
         decay_rate = 1;
         ants;
+        number_ants = 30;% MAGIC NUMBER ALERT
     end
     methods     
         function p=Pheromone(varargin) 
@@ -23,7 +24,7 @@ classdef Pheromone < handle
                     p.level  = varargin{1};% pheromone level
                     p.type   = varargin{2};% pheromone type
                     p.colony = [];% pheromone type
-                    p.ants   = zeros(1,25);
+                    p.ants   = zeros(1,p.number_ants);
             end
         end
         
@@ -37,7 +38,7 @@ classdef Pheromone < handle
             end
             
             if (self.level == 0 && max(self.ants) ~= 0) 
-                self.ants = zeros(1,25);
+                self.ants = zeros(1,self.number_ants);
             end
         end
         

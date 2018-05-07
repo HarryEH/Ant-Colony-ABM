@@ -13,6 +13,7 @@ classdef Ant < handle
         colony;
         type;
         pheromone_span = 25;
+        worry;
     end
     methods
         function a=Ant(varargin)% Constructor
@@ -26,6 +27,7 @@ classdef Ant < handle
                 case 9 % Create a new Ant
                     a.age      = varargin{1};% Age of Ant
                     a.energy   = varargin{2};% Current energy 
+                    a.worry    = a.energy/ 2;% When ant cares about its health
                     a.carrying = varargin{3};% Current amount of food that you're carrying
                     a.pos      = varargin{4};% Current position
                     a.speed    = varargin{5};% Current speed
@@ -36,52 +38,23 @@ classdef Ant < handle
             end
         end
         
-        function flag = step(self, env)
+        function step(self, env)
             if (isempty(self.pos))
                 return;
             end
-            % Increase the age
+            
             self.ageStep();
             
-            self.energyStep(env);
+            self.energyStep();
             
-            [x1, y1] = convert_pos(self.pos(1), self.pos(2));
+            self.findFood(env);
             
+            self.colonyActions(env);
             
-            if(self.carrying == 0)
-                if (env.checkForFood([x1,y1]))
-                    if (env.environment(x1,y1).food < self.strength)
-                        self.carrying = env.environment(x1,y1).food;
-                        env.environment(x1,y1).food = 0;
-                    else
-                        self.carrying = self.strength;
-                        env.environment(x1,y1).food = env.environment(x1,y1).food - self.strength;
-                    end
-%                 else
-%                     p = Pheromone(self.pheromone_span, PheromoneType.Exploratory);
-%                     env.environment(x1, y1).updatePheromone(p, self.colony);
-                end
-            else
-                [c_x, c_y] = convert_pos(env.colonies(self.colony).pos(1), ...
-                                         env.colonies(self.colony).pos(2));
-                                  
-                [ant_x, ant_y] = convert_pos(self.pos(1), self.pos(2));
-                if ( c_x == ant_x && c_y == ant_y )
-                    % dump food in the colony
-                    env.colonies(self.colony).energy = env.colonies(self.colony).energy + self.carrying;
-                    self.carrying = 0;
-                    self.energy = 150;
-                else
-                    % lay food carrying pheremone
-                    p = Pheromone(self.pheromone_span, PheromoneType.Food);
-                    env.environment(x1, y1).updatePheromone(p, self.colony);
-                end
-                
-            end
+            self.layPheromones(env);
             
             self.moveStep(env.size, env.colonies(self.colony).pos, env);
             
-            flag = false;
         end
         
         function ageStep(self)
@@ -90,13 +63,17 @@ classdef Ant < handle
         
         function moveStep(self, size, colony_pos, env)
             if (self.carrying == 0)
-                [flag, x, y] = self.detectFoodPheromone(env);
-                if (flag)
-                    self.followFood(size, colony_pos, x, y, env);
+                if self.energy < self.worry 
+                    self.moveToColony(size, colony_pos);
                 else
-                    self.randomMove(size);
+                    [flag, x, y] = env.detectFoodPheromone(self.pos, self.colony);
+                    if (flag)
+                        self.followFood(size, colony_pos, x, y, env);
+                    else
+                        self.randomMove(size);
+                    end
                 end
-            else     
+            else
                 self.moveToColony(size, colony_pos);
             end  
         end
@@ -148,7 +125,6 @@ classdef Ant < handle
                
                 theta = theta_between_points( self.pos(1), self.pos(2),...
                                               x, y);
-               
                 if self.hasAntVisitedPheromone(env, x, y)
                     self.randomMove(size);
                 else
@@ -169,46 +145,56 @@ classdef Ant < handle
             self.pos = [x1, y1];
         end
         
-        function [flag, x, y] = detectFoodPheromone(self, env)
-            flag = false;
-            x    = [];
-            y    = [];
+        function findFood(self, env)
+            [x1, y1] = convert_pos(self.pos(1), self.pos(2));
             
-            [int_x, int_y] = convert_pos(self.pos(1), self.pos(2));
-            
-            x_corner = int_x - 1;
-            y_corner = int_y - 1;
-            
-            for i = 0:1:2
-                for j = 0:1:2
-                    if ( (x_corner + i > 0 && x_corner + i < 51) && ...
-                            ( y_corner + j > 0 && y_corner + j < 51) )
-                        
-                        % assign the pheromone to a variable 
-                        ph = env.environment(x_corner + i, y_corner + j) ...
-                        .getPheromone(PheromoneType.Food);
-                    
-                        if ( ph.level > 0 && ismember(self.colony, ph.colony) )
-                            x(length(x) + 1) = x_corner + i;
-                            y(length(y) + 1) = y_corner + j;
-                            flag = true;
-                        end
-                        
+            if(self.carrying == 0)
+                [flag, x, y] = env.checkForFood([x1,y1]);
+                if (flag)
+                    if (env.environment(x,y).food < self.strength)
+                        self.carrying = env.environment(x,y).food;
+                        env.environment(x,y).food = 0;
+                    else
+                        self.carrying = self.strength;
+                        env.environment(x,y).food = env.environment(x,y).food - self.strength;
                     end
-                    
                 end
             end
-            % detect if there is food pheromone around
         end
         
+        function colonyActions(self, env)
+            % Colony position
+            [c_x, c_y] = convert_pos(env.colonies(self.colony).pos(1), ...
+                                         env.colonies(self.colony).pos(2));
+            % Ant position                         
+            [ant_x, ant_y] = convert_pos(self.pos(1), self.pos(2));
+            if ( c_x == ant_x && c_y == ant_y )
+                % dump food in the colony
+                env.colonies(self.colony).energy = ...
+                        env.colonies(self.colony).energy + self.carrying;
+                self.carrying = 0;
+                if (env.colonies(self.colony).energy > self.worry * 2)
+                    difference = (self.worry*2 - self.energy);
+                    env.colonies(self.colony).energy = ...
+                        env.colonies(self.colony).energy - difference;
+                    self.energy = self.worry * 2;
+                end
+                
+            end
+        end
+        
+        function layPheromones(self, env)
+            [x1, y1] = convert_pos(self.pos(1), self.pos(2));
+            
+            if (self.carrying ~= 0)
+                p = Pheromone(self.pheromone_span, PheromoneType.Food);
+                env.environment(x1, y1).updatePheromone(p, self.colony);
+            end
+            
+        end
        
-        function energyStep(self, env)
-            % Decrease the energy if not in colony
-%             if (mean (self.pos == env.colonies(self.colony).pos) ~= 1)
-                % decrease energy
-                % maybe based on how much its carrying???
+        function energyStep(self)
             self.energy = self.energy - 1;% does what they are carrying effect this????
-%             end
         end
         
         function flag = hasAntVisitedPheromone(self, env, x, y)
