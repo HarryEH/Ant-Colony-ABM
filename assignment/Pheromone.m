@@ -8,7 +8,7 @@ classdef Pheromone < handle
         colony;
         decay_rate = 1;
         ants;
-        number_ants = 30;% MAGIC NUMBER ALERT
+        number_ants = 50;% MAGIC NUMBER ALERT
     end
     methods     
         function p=Pheromone(varargin) 

@@ -1,7 +1,10 @@
+seed = 18;
+rng(seed);
 % Values
 environment_size = 50;
 colony_count = 1;
-worker_percentage = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+worker_percentage = [0.5];
+% [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 colony_size = 20;
 simulation_length  = 1000;
 number_simulations = 1;
@@ -10,7 +13,7 @@ RECORD = number_simulations == 1 && true;
 
 if RECORD
     test = figure;
-    set(test, 'Visible', 'off');
+    set(test, 'Visible', 'on');
     v = VideoWriter('assignment/video/food_pheromones.avi', 'Motion JPEG AVI');
     open(v);
 end

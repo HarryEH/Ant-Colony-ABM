@@ -30,12 +30,12 @@ classdef Colony < handle
             scouts = double(int16(size * (1-ratio)));
             self.ants = Ant.empty(0,0);
             
-            ant_lifespan = 150;% THIS IS ALSO HARDCODED INTO AN ANT RULE
-            scout_speed  = 1;
+            ant_lifespan = 150;
             
+            scout_speed  = 0.5;
             scout_strength = 50;
            
-            worker_speed = 0.667;
+            worker_speed = 0.36;
             worker_strength = 100;
             
             for i = 1:1:scouts

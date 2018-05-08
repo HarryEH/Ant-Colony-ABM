@@ -14,6 +14,8 @@ classdef Ant < handle
         type;
         pheromone_span = 25;
         worry;
+        pheromones_visited;
+        iter = 1;
     end
     methods
         function a=Ant(varargin)% Constructor
@@ -23,7 +25,7 @@ classdef Ant < handle
                     a.carrying = []; a.pos      = [];
                     a.speed    = []; a.colony   = [];
                     a.type     = []; a.strength = [];
-                    a.id       = [];
+                    a.id       = []; a.pheromones_visited = [];
                 case 9 % Create a new Ant
                     a.age      = varargin{1};% Age of Ant
                     a.energy   = varargin{2};% Current energy 
@@ -35,6 +37,7 @@ classdef Ant < handle
                     a.colony   = varargin{7};% Colony that the any belongs to 
                     a.type     = varargin{8};% type
                     a.id       = varargin{9};% type
+                    a.pheromones_visited = zeros(2,100);
             end
         end
         
@@ -81,30 +84,24 @@ classdef Ant < handle
         end
         
         function randomMove(self, size, colony_pos)
-            if (self.age < 5)
-                theta = rand() * 2*pi;
-%             elseif (self.age < 15)
-%                 mid = theta_between_points(self.pos(1), self.pos(2), ...
-%                     colony_pos(1), colony_pos(2));
-%                 
-%                 lower = (-mid) - (pi/2);
-%                 
-%                 if (lower < 0)
-%                     lower = (2*pi) + lower;
-%                 end
-%                 
-%                 upper = (-mid) + (pi/2);
-%                 
-%                 if (upper > (2*pi))
-%                     upper = upper - (2*pi);
-%                 end
-%                 
-%                 theta = (rand*(upper-lower)) + lower;
-            else
-                theta = rand() * 2*pi;
-            end
             
+            theta = rand() * 2*pi;
+            
+            if(self.age > 2 && self.pos(1) > 15 && self.pos(1) < 40 ...
+                    && self.pos(2) > 15 && self.pos(2) < 40)
+                to_colony = theta_between_points(self.pos(1),self.pos(2),...
+                            colony_pos(1), colony_pos(2));
+                
+                if (to_colony >= pi)
+                    theta = to_colony - pi;
+                else
+                    theta = to_colony + pi;
+                end
+         
+            end
+ 
             self.doMove(theta, size);
+            
         end
         
         function moveToColony(self, size, pos)
@@ -139,6 +136,8 @@ classdef Ant < handle
                     index = randi([1, length(thetas)],1,1);
                     env.environment(xs(index),ys(index)).pheromone(2) ...
                                             .ants(self.id) = self.id;
+                                        
+                    self.addPheromoneVisited(xs(index),ys(index));
                     self.doMove(thetas(index), size);
                 else
                     self.randomMove(size, colony_pos);
@@ -153,6 +152,8 @@ classdef Ant < handle
                 else
                     env.environment(x,y).pheromone(2) ...
                                                 .ants(self.id) = self.id;
+                    
+                    self.addPheromoneVisited(x, y);
                     self.doMove(theta, size);
                 end
                   
@@ -192,6 +193,11 @@ classdef Ant < handle
             % Ant position                         
             [ant_x, ant_y] = convert_pos(self.pos(1), self.pos(2));
             if ( c_x == ant_x && c_y == ant_y )
+                
+                if self.carrying ~= 0
+                    self.resetPheromoneVisited(env);
+                end
+                
                 % dump food in the colony
                 env.colonies(self.colony).energy = ...
                         env.colonies(self.colony).energy + self.carrying;
@@ -209,7 +215,7 @@ classdef Ant < handle
         function layPheromones(self, env)
             [x1, y1] = convert_pos(self.pos(1), self.pos(2));
             
-            if (self.carrying ~= 0)
+            if (self.carrying == 0)
                 p = Pheromone(self.pheromone_span, PheromoneType.Exploratory);
                 env.environment(x1, y1).updatePheromone(p, self.colony);
             else
@@ -225,6 +231,30 @@ classdef Ant < handle
         
         function flag = hasAntVisitedPheromone(self, env, x, y)
             flag = env.environment(x,y).pheromone(2).ants(self.id) ~= 0;
+        end
+        
+        function addPheromoneVisited(self, x, y)
+      
+            self.pheromones_visited(1,self.iter) = x;
+            
+            self.pheromones_visited(2,self.iter) = y;
+            
+            self.iter = self.iter + 1;
+            
+        end
+        
+        function resetPheromoneVisited(self, env)
+            
+            if max(mean(self.pheromones_visited)) ~= 0
+                for i = 1:1:(self.iter-1)
+                env.environment(self.pheromones_visited(1,i), ...
+                                self.pheromones_visited(2,i)).pheromone(2).ants(self.id) = 0;
+                end
+
+                self.pheromones_visited = zeros(2,100);
+                self.iter = 1;
+            end
+ 
         end
        
     end

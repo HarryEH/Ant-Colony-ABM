@@ -7,6 +7,8 @@ classdef Environment < handle
         colonies;
         colony_count; 
         environment;
+        food_spawn_iterations = 25;
+        food_spawn_amount = 3;
     end
     methods
         
@@ -32,14 +34,14 @@ classdef Environment < handle
                         end
                     end 
                     
-                    a.generateFood();
+                    a.generateFood(a.size);
             end
         end
         
         function step(self, iter)
             
-            if ( mod(iter, 50) == 0)
-                self.generateFood();
+            if ( mod(iter, self.food_spawn_iterations) == 0)
+                self.generateFood(self.food_spawn_amount);
             end
             
             for i = 1:1:length(self.colonies)
@@ -110,15 +112,15 @@ classdef Environment < handle
             % detect if there is food pheromone around
         end
         
-        function generateFood(self)
+        function generateFood(self, food_spawn_amount)
             
-            len = self.size;
+            len = food_spawn_amount;
             
             for i = 1:1:len
                 [x,y] = bound_xy(self.size, int16(rand()*self.size), ...
                                  int16(rand()*self.size));
                 
-                self.environment(x,y).food = rand() * 200;
+                self.environment(x,y).food = randi([800, 3000],1,1);
             end
             
         end
