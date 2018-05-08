@@ -49,7 +49,7 @@ clf;
 set(fig, 'Visible', 'off');
 hold on;
 cols = distinguishable_colors(11);
-for i = 1:1:number_simulations
+for i = 1:1:11
     plot(results_two(:,:,i)/number_experiments,'Color',cols(i,:));
 end
 
