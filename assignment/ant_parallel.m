@@ -18,13 +18,13 @@ results = zeros(1,cpu);
 
 parfor simu = 1:1:cpu
     
-    for i = 1:1:100
+    for i = 1:1:200
         env = Environment(environment_size, colony_count, worker_percentage(simu), colony_size);
     
         for step = 1:1:simulation_length
             env.step(step);
         end
-        results(simu) = (results(simu) + env.colonies(1).energy) / i;
+        results(simu) = results(simu) + env.colonies(1).energy;
     end
      
 end
@@ -36,6 +36,8 @@ bar((worker_percentage*100),results);
 title('Average Colony Energy for each % of workers');
 xlabel('% of workers');
 ylabel('Colony Energy');
-saveas(fig,'colony_energy_vs_percentage.png');
+saveas(fig,'results/colony_energy_vs_percentage.png');
 
 delete(pool)
+
+save('results/sharc_env');
