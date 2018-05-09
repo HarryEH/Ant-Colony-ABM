@@ -32,10 +32,10 @@ classdef Colony < handle
             
             ant_lifespan = 150;
             
-            scout_speed  = 0.5;
-            scout_strength = 50;
+            scout_speed  = 1;
+            scout_strength = 75;
            
-            worker_speed = 0.36;
+            worker_speed = 0.18;
             worker_strength = 100;
             
             for i = 1:1:scouts
