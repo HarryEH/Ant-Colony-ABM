@@ -3,7 +3,8 @@ rng(seed);
 % Values
 environment_size = 50;
 colony_count = 1;
-worker_percentage = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+worker_percentage = [0.5];
+% [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 colony_size = 20;
 simulation_length  = 1000;
 number_simulations = 1;
@@ -23,7 +24,7 @@ for simu = 1:1:number_simulations
     
     % Simulation setup 
     tic;
-    env = Environment(environment_size, colony_count, [worker_percentage(simu)], colony_size);
+    env = Environment(environment_size, colony_count, worker_percentage, colony_size);
     toc;
     
     disp('********************************');
@@ -55,20 +56,20 @@ for simu = 1:1:number_simulations
 end
 
 
-fig = figure;
-set(fig, 'Visible', 'on');
-hold on;
-cols = distinguishable_colors(11);
-for i = 1:1:number_simulations
-    plot(results(:,:,i),'Color',cols(i,:));
-end
-
-legend({'0% Workers', '10% Workers','20% Workers','30% Workers','40% Workers', '50% Workers',...
-    '60% Workers','70% Workers','80% Workers','90% Workers', '100% Workers'}, 'Location','northwest');
-title('Colony Energy vs Iteration for various percentages of Worker Ant');
-xlabel('Iteration');
-ylabel('Colony Energy');
-% saveas(fig,'colony_energy_vs_iteration.png');
+% % fig = figure;
+% % set(fig, 'Visible', 'off');
+% % hold on;
+% % cols = distinguishable_colors(11);
+% % for i = 1:1:number_simulations
+% %     plot(results(:,:,i),'Color',cols(i,:));
+% % end
+% % 
+% % legend({'0% Workers', '10% Workers','20% Workers','30% Workers','40% Workers', '50% Workers',...
+% %     '60% Workers','70% Workers','80% Workers','90% Workers', '100% Workers'}, 'Location','northwest');
+% % title('Colony Energy vs Iteration for various percentages of Worker Ant');
+% % xlabel('Iteration');
+% % ylabel('Colony Energy');
+% % saveas(fig,'colony_energy_vs_iteration.png');
 
 
 if RECORD

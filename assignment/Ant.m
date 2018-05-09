@@ -50,9 +50,9 @@ classdef Ant < handle
             
             self.energyStep();
             
-            self.findFood(env);
-            
             self.colonyActions(env);
+            
+            self.findFood(env);
             
             self.layPheromones(env);
             
