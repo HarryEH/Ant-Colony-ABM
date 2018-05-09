@@ -65,4 +65,4 @@ saveas(fig,'colony_energy_vs_iteration.png');
 
 delete(pool)
 
-% save('results/sharc_env');
+save('results/sharc_env');
