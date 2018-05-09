@@ -4,7 +4,7 @@ addpath(genpath(pwd));
 
 cpu = 8;
 
-pool = parpool('local',cpu);
+pool = parpool('local',8);
 
 environment_size   = 50;
 colony_count       = 1;
@@ -22,13 +22,16 @@ parfor simu = 1:1:cpu
         
         rng(i);
         
+        tmp = zeros(1,simulation_length);
+        
         env = Environment(environment_size, colony_count, worker_percentage(simu), colony_size);
     
         for step = 1:1:simulation_length
             env.step(step);
-            results_two(1, step, simu) = results_two(1, step, simu) + env.colonies(1).energy;
+            tmp(step) = env.colonies(1).energy;
         end
-        
+        disp(tmp);
+        results_two(:, :, simu) = results_two(:, :, simu) + tmp;
         results(simu) = results(simu) + env.colonies(1).energy;
     end
      
