@@ -27,7 +27,7 @@ classdef Colony < handle
         end
         
         function generateAnts(self, ratio, size)
-            scouts = double(int16(size * (1-ratio)));
+            scouts = int32(size * (1-ratio));
             self.ants = Ant.empty(0,0);
             
             ant_lifespan = 150;
@@ -39,7 +39,11 @@ classdef Colony < handle
             worker_strength = 100;
             
             for i = 1:1:scouts
-                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);
+                self.ants(int32(i)) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);
+            end
+            
+            if scouts == 0
+                scouts = 1;
             end
             
             for i = scouts:1:size

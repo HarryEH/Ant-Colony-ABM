@@ -31,7 +31,7 @@ parfor simu = 1:1:ex
             env.step(step);
             tmp(step) = env.colonies(1).energy;
         end
-        disp(tmp);
+        
         results_two(:, :, simu) = results_two(:, :, simu) + tmp;
         results(simu) = results(simu) + env.colonies(1).energy;
     end
@@ -45,7 +45,7 @@ bar((worker_percentage*100),results/number_experiments);
 title('Average Colony Energy for each % of workers');
 xlabel('% of workers');
 ylabel('Colony Energy');
-saveas(fig,'results/colony_energy_vs_percentage.png');
+saveas(fig,'colony_energy_vs_percentage.png');
 
 clf;
 
@@ -61,8 +61,8 @@ legend({'0% Workers','10% Workers','20% Workers','30% Workers','40% Workers', '5
 title('Colony Energy vs Iteration for various percentages of Worker Ant');
 xlabel('Iteration');
 ylabel('Colony Energy');
-saveas(fig,'results/colony_energy_vs_iteration.png');
+saveas(fig,'colony_energy_vs_iteration.png');
 
 delete(pool)
 
-save('results/sharc_env');
+% save('results/sharc_env');

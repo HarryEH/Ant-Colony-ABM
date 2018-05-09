@@ -18,12 +18,12 @@ classdef Environment < handle
                 case 4 % Create a new Ant
                     a.colony_count = varargin{2};
                     a.colonies = Colony.empty(0,0);
-                    a.size=varargin{1}; 
+                    a.size= int32(varargin{1}); 
                     
                     for i = 1:1:a.colony_count
                         a.ratio = varargin{3}(i);
 %                       Randomly place the colonies
-                        a.colonies(i) = Colony([randi([0.3*a.size,0.7*a.size],1,1), ...
+                        a.colonies(i) = Colony([randi([int32(0.3*a.size),int32(0.7*a.size)],1,1), ...
                                         randi([0.3*a.size,0.7*a.size],1,1)],0,0,i);
                         
                         a.colonies(i).generateAnts(varargin{3}(i), varargin{4});
@@ -36,7 +36,7 @@ classdef Environment < handle
                         end
                     end 
                     
-                    a.generateFood(a.size);
+                    a.generateFood(int32(a.size));
             end
         end
         
