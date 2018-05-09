@@ -1,72 +1,32 @@
-\documentclass{article}
+\documentclass[11pt,oneside,titlepage]{article}
 
+\usepackage[margin=1.27in]{geometry}
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{subfig}
 \usepackage{mathtools}
+\usepackage[parfill]{parskip}
 %\usepackage{subfigure}
 \graphicspath{ {images/} }
 
-\title{
-  Simulating Ant Colonies to Investigate How Woker/Scout distributions Affect Colony Health
-  \small Harry Howarth, Frazer Bennett-Wilford, Blayze Millward, Daeun Kim \\
-}
-\author{Harry Howarth, Frazer Bennett Wilford, Daeun Kim}
-
 \begin{document}
+
+  \title{Simulating Ant Colonies to Investigate How Worker/Scout distributions Affect Colony Health}
+  \author{Harry Howarth, Frazer Bennett-Wilford and Blayze Millward}
+  \date{\today}
+  \maketitle
   
-  \section*{Abstract}
-    %Background
-    Ant colonies have the unique ability to dynamically search the terrain surrounding their environments, detect and retrieve sources of food. This is an emergent behaviour that
-    has been well well explored by a variety of past studies \cite{camazine_self-organization_2003} %TODO: Add more citations here.
-    often with a focus on examining the way that paths to and from food sources are created and organised. %TODO: More reference to this particular thing here.
-    In reality, many species of ants have a number of different castes of ants within their ranks \cite{noauthor_caste_nodate}. This study examines what affect different distributions
-    of two castes of ants in particular -- the \textit{minor-} and \textit{major-worker} ants -- within a colony have on that colony's overall health when faced with differing conditions.
-    %Methods                                                                      v TODO here? Discuss specifics of descretisation (size, sector size)
-    Ant colonies are simulated in Matlab on train that has been descritised into chunks, and food is spawned randomoly throughout the terrain. Ant colonies with differing ratios of simulated
-    minor and major worker ants are created, and their success -- as measured by [MEASUREMENT HERE].%TODO: What are we measuring for colony health? Population size? Total energy gathered? Average Energy over a timeframe?
-    %Results
-    We found that [FINDINGS HERE]
-    %Conclusions                                                          v TODO: At this point, I'm just guessing
-    These findings indicate that [INSIGHT INTO ANTS HERE], indicating that a mix of major and minor workers is the most suitable -- with the minor workers excelling at [SOMETHING?] while the
-    major workers [DO SOMETHING ELSE], as seen in nature [CITE THIS ACTUALLY HAPPENING - Or, I guess don't if it doesn't really happen and just state that our model was wrong.]
-
+  \input{sections/abstract.tex}
+  
   \pagenumbering{arabic}
-  \section{Introduction and Background}
-  	%% Main Aim
-		
-
-		%% Relevant materials * 3 - Some materials also on real world ant colonies
-		% The below are a list of references that are not in the .bib file yet, will be added when I'm (Blayze) back home
-		% 1) https://cs.gmu.edu/~sean/papers/panait04ant.pdf
-		% 2) https://ieeexplore.ieee.org/document/4129846/ - ACO algorithm
-		% 3) https://ieeexplore.ieee.org/document/4375636/ - ACO again
-		% 4) https://link.springer.com/chapter/10.1007%2F978-3-540-28646-2_17 - Real ant simulation
-		% 5) https://cs.gmu.edu/~sean/papers/panait04learning.pdf --- TODO: Read this some more, read the referenced papers, make sure it's being referenced properly
-
-		A number of past studies have examined the way that ant colonies search their surrounding areas to locate and retrieve food \cite{vittori_modeling_2004, 1}.
-		Often the aim of those studies focused on simulating ant colonies is to apply the emergent behaviour that ant colonies exhibit to solve abstracted technical
-		problems \cite{2, 3}, with a smaller number of past works focusing on simulating ant colony behaviour as it is seen in nature \cite{4} %TODO: Perhaps cite some more things here
-		
-		\cite{4} paper implements ant trail following  ---- somehting about it modelling using deposition
-		
-		Whereas this \cite{1} introduces the concept of a dual-pheromone system, where one set of pheromone leads away, one toward
-		
-		\cite{5} discusses the benefits of simulating the ant's return path using pheromones or simply having the ants return directly
-
-		TODO: Cite one other thing here, giving it another piece of information
-
-		%% How the relevant materials inspired us
-		These pieces of information inspired us to do stuff like the other stuff
-
-  \section{Methodology}
-
-  \section{Results}
-
-  \section{Discussion}
-
-  \section{Conclusions}
-
+  
+  \input{sections/introduction.tex}
+  \input{sections/methodology.tex}
+  \input{sections/results.tex}
+  \input{sections/discussion.tex}
+  \input{sections/conclusion.tex}
+  
+  
   % BIBLIOGRAPHY AND APPENDIX
   \newpage
   \bibliography{refs}
