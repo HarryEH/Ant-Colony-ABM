@@ -1,24 +1,37 @@
 \section{Introduction and Background}
   	%% Main Aim
 		
+    % Little bit on what it is about ant colonies that we want to work with
+    Ants are \textit{eusocial} creatures, meaning that they possess the highest level of organisation that any social species of animal can possess\cite{wilson_insect_1971, hadley_what_nodate}. Behaviour allows them to perform
+    incredible feats as a whole, even when individually each ant has very little actuation over it's environment. One such example of this is an ant colony's ability to forage for food from its surrounding area, while avoiding
+    obstacles and successfully navigating changes in its environment. This ability in itself has been examined a significant amount in past research\cite{vittori_modeling_2004, a_panait_ant_2004}, and has even lead to algorithmic
+    methods inspired by the behaviour being developed to solve problems faced in areas of computer science, such as those similar to the \textit{travelling salesmant problem}\cite{dorigo_ant_2006, zhang_improved_2007}.
+
+    Another characteristic of eusocial creatures -- and the focus of our own investigation -- is the separation of groups within the colony into differing \textit{castes} that exhibit specialized behaviour, making them more fit
+    for certain types of jobs over others of their colony\cite{hadley_what_nodate}. Ants in particular are often divided into up to four differing casts: Queens, Minor Workers (Workers), Major Workers (Soldiers) and Drones\cite{noauthor_ant_nodate,noauthor_castes_nodate}.
+    Minor workers typically make up [SOME NUMBER]\% of the colony, %TODO
+    whereas major works usually make up less, often [THE OTHER NUMBER]\% of the colony. %TODO
+    Our experiment is interested in the area of finding the ratio of minor to major woker ants that has the most positive impact on an ant colony's ability to thrive within a changing environment.
+    %Note: Potentially useful: https://rd.springer.com/article/10.1007%2FPL00012655 https://link.springer.com/article/10.1007/s00040-007-0918-9
 
 		%% Relevant materials * 3 - Some materials also on real world ant colonies
-		% The below are a list of references that are not in the .bib file yet, will be added when I'm (Blayze) back home
+		% The below are a list of references that are not in the .bib file yet, will be added when I'm (Blayze) back home - done! But I'm leaving these here for now because they serve as good notes.
 		% 1) https://cs.gmu.edu/~sean/papers/panait04ant.pdf
 		% 2) https://ieeexplore.ieee.org/document/4129846/ - ACO algorithm
 		% 3) https://ieeexplore.ieee.org/document/4375636/ - ACO again
 		% 4) https://link.springer.com/chapter/10.1007%2F978-3-540-28646-2_17 - Real ant simulation
 		% 5) https://cs.gmu.edu/~sean/papers/panait04learning.pdf --- TODO: Read this some more, read the referenced papers, make sure it's being referenced properly
 
-		A number of past studies have examined the way that ant colonies search their surrounding areas to locate and retrieve food \cite{vittori_modeling_2004, 1}.
-		Often the aim of those studies focused on simulating ant colonies is to apply the emergent behaviour that ant colonies exhibit to solve abstracted technical
-		problems \cite{2, 3}, with a smaller number of past works focusing on simulating ant colony behaviour as it is seen in nature \cite{4} %TODO: Perhaps cite some more things here
+		A number of past studies have examined the way that ant colonies search their surrounding areas to locate and retrieve food \cite{vittori_modeling_2004, a_panait_ant_2004}.
+		Often the these studies focus on simulating ant colonies to apply the emergent behaviour that they exhibit to solve abstracted technical
+		problems \cite{dorigo_ant_2006, zhang_improved_2007}, with a smaller number of past works focusing on simulating ant colony behaviour as it is seen in nature \cite{vittori_modeling_2004} %TODO: Perhaps cite some more things here
 		
-		\cite{4} paper implements ant trail following  ---- somehting about it modelling using deposition
+		The 2004 work by Vittori et al\cite{vittori_modeling_2004} examined the way that ants navigated their environment, using trails of depositied pheromones which attracted other ants. This work in particular
+    was of interest to us, as it evaluated the results of the model by comparing them to real ants in a number of experiments.
 		
-		Whereas this \cite{1} introduces the concept of a dual-pheromone system, where one set of pheromone leads away, one toward
+		Whereas this \cite{a_panait_ant_2004} introduces the concept of a dual-pheromone system, where one set of pheromone leads away, one toward
 		
-		\cite{5} discusses the benefits of simulating the ant's return path using pheromones or simply having the ants return directly
+		\cite{a_panait_learning_2018} discusses the benefits of simulating the ant's return path using pheromones or simply having the ants return directly
 
 		TODO: Cite one other thing here, giving it another piece of information
 
