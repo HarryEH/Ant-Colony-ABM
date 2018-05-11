@@ -3,10 +3,10 @@ rng(seed);
 % Values
 environment_size = 50;
 colony_count = 1;
-worker_percentage = [0.9];
+worker_percentage = [0.8];
 [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 colony_size = 20;
-simulation_length  = 1000;
+simulation_length  = 10000;
 number_simulations = 1;
 
 RECORD = number_simulations == 1 && true;

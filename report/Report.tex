@@ -1,7 +1,8 @@
 \documentclass[11pt,oneside,titlepage]{article}
 
-\usepackage[margin=1.27in]{geometry}
+\usepackage[margin=1.25in]{geometry}
 \usepackage{graphicx}
+\usepackage{titlepic}
 \usepackage{listings}
 \usepackage{subfig}
 \usepackage{mathtools}
@@ -9,12 +10,16 @@
 %\usepackage{subfigure}
 \graphicspath{ {images/} }
 
-\begin{document}
 
-  \title{Simulating Ant Colonies To Investigate How Worker/Scout Distributions Affect Colony Energy}
+  \titlepic{\includegraphics[width=\textwidth]{images/Ant.jpg}}
+  \title{Simulating Ant Colonies To Investigate How Minor Worker vs Major Worker Ant Distributions Affect Colony Energy}
   \author{Harry Howarth, Frazer Bennett-Wilford and Blayze Millward}
   \date{\today}
+  
+\begin{document}
   \maketitle
+  
+  \tableofcontents
   
   \input{sections/abstract.tex}
   
