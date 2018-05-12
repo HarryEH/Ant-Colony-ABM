@@ -41,7 +41,7 @@ for simu = 1:1:number_simulations
             plot_food(env);
             plot_food_pheromones(env);
             plot_ants_colonies(env.colonies, colony_count, worker_percentage(simu), env.size, false);
-            pause(0.000001);
+            pause(0.00001);
             clf;
         hold off;
 

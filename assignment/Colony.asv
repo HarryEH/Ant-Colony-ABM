@@ -38,10 +38,10 @@ classdef Colony < handle
             worker_speed = 0.36;
             worker_strength = 120;
             
-            number_of_scouts = 12;
-            number_of_workers = 4;
+            number_of_scouts = 1;
+            number_of_workers = 1;
             
-            for i = 1:1:(number_of_scouts + 1)
+            for i = 1:1:number_of_scouts
                 self.ants(int32(i)) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);
             end
             
@@ -49,7 +49,7 @@ classdef Colony < handle
                 scouts = 1;
             end
             
-            for i = i:1:(number_of_scouts + number_of_workers)
+            for i = number_of_scouts:1:(number_of_scouts + number_of_workers)
                 self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, worker_speed, worker_strength, self.id, AntType.Worker, i);
             end
             
