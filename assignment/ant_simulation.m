@@ -3,10 +3,19 @@ rng(seed);
 % Values
 environment_size = 50;
 colony_count = 1;
-worker_percentage = [0.0];
+
+% Percentage of energy of colony that is distributed to be worker ants
+worker_percentage = [0.5];
 %[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+
+% Each worker/scout ant costs a varying amount of energy
+% the total energy here is split by the the worker_percentage and then
+% distributed to set the number of worker/scout ants in the simulation
 colony_ants_energy_total = 20000;
+
+% Number of steps to run the simulation for
 simulation_length  = 10000;
+
 number_simulations = 1;
 
 RECORD = number_simulations == 1 && false;
