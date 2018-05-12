@@ -40,12 +40,12 @@ for simu = 1:1:number_simulations
             plot_food(env);
             plot_food_pheromones(env);
             plot_ants_colonies(env.colonies, colony_count, worker_percentage(simu), env.size, false);
-            pause(0.000001);
-            clf;
+            pause(0.1);
+            clf
         hold off;
         
         if RECORD
-            frame = getframe( test );
+            frame  = getframe( test );
             writeVideo(v,frame);
             clf;
             xlim([0 env.size]);

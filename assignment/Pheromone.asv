@@ -3,7 +3,7 @@
 % date - xx/xx/18
 classdef Pheromone < handle
     properties
-        linked_pheromone;
+        linked_pos;
         level;
         type;
         colony;
@@ -16,14 +16,14 @@ classdef Pheromone < handle
 
             switch nargin                  
                 case 0
-                    p.linked_pheromone = [];
+                    p.linked_pos = [];
                     p.level  = [];
                     p.type   = [];
                     p.colony = [];
                     p.ants   = [];
                     
                 case 2 % create a new pheromone
-                    p.linked_pheromone = [];
+                    p.linked_pos = [];
                     p.level  = varargin{1};% pheromone level
                     p.type   = varargin{2};% pheromone type
                     p.colony = [];% pheromone type

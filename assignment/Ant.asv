@@ -79,8 +79,9 @@ classdef Ant < handle
                     
                     % check to see if on food pheromone
                     if (pheromone.level > 0) 
+                       
                        theta = theta_between_points( self.pos(1), self.pos(2),...
-                                              pheromone., y(i));
+                                              pherom(i), y(i));
                                           
                         
                     else
