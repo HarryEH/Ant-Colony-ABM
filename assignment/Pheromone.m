@@ -29,7 +29,7 @@ classdef Pheromone < handle
         end
         
         function step(self) 
-            if (self.level ~= 0)number_simulations
+            if (self.level ~= 0)
                 self.level = self.level - self.decay_rate;
             elseif (isempty(self.colony))
                 if max(self.colony) == 0

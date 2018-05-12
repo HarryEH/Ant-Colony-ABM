@@ -215,6 +215,9 @@ classdef Ant < handle
                     env.colonies(self.colony).energy = ...
                         env.colonies(self.colony).energy - energy_needed;
                     self.energy = self.max_energy;
+                    
+                    % reset the desperation back to normal if ant regains full energy
+                    self.energy_before_returning = self.max_energy / 2;
                 else
                    % sends the ant out again (desperation)
                    self.energy_before_returning = self.energy_before_returning / 2;
