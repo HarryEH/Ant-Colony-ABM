@@ -9,13 +9,14 @@ classdef Ant < handle
         max_energy;
         energy_threshold;
         energy_before_returning;
+        energy_usage_per_step;
         carrying; 
         pos;
         speed; 
         strength;
         colony;
         type;
-        pheromone_span = 25;
+        pheromone_span = 10;
         pheromones_visited;
         iter = 1;
     end
@@ -32,6 +33,7 @@ classdef Ant < handle
                     a.age      = varargin{1};% Age of Ant
                     a.energy   = varargin{2};% Current energy 
                     a.max_energy = varargin{2};
+                    a.energy_usage_per_step = varargin{2} / 150; 
                     a.energy_threshold = 25;% Energy threshold before returning to nest
                     a.energy_before_returning = a.energy / 2; % Energy before returning to nest
                     a.carrying = varargin{3};% Current amount of food that you're carrying
@@ -235,7 +237,7 @@ classdef Ant < handle
         end
        
         function energyStep(self)
-            self.energy = self.energy - 1;% does what they are carrying effect this????
+            self.energy = self.energy - self.energy_usage_per_step;% does what they are carrying effect this????
         end
         
         function flag = hasAntVisitedPheromone(self, env, x, y)

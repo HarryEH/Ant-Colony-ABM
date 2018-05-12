@@ -26,31 +26,28 @@ classdef Colony < handle
             end
         end
         
-        function generateAnts(self, ratio, size)
-            scouts = int32(size * (1-ratio));
+        function generateAnts(self, ratio, energyTotal)
             self.ants = Ant.empty(0,0);
             
-            ant_lifespan = 150;
-            
-            scout_speed = 0.36;
+            scout_speed = 1.0;%0.36;
             scout_strength = 30;
+            scout_energy_max = 150;
+            scout_energy_usage = 1;
            
-            worker_speed = 0.36;
+            worker_speed = 1.0;%0.36;
             worker_strength = 120;
+            worker_energy_max = 600;
+            worker_energy_usage = 4;
             
-            number_of_scouts = 12;
-            number_of_workers = 4;
+            number_of_scouts = floor((energyTotal/scout_energy_max)*(1-ratio));
+            number_of_workers = floor((energyTotal/worker_energy_max)*(ratio));
             
             for i = 1:1:(number_of_scouts + 1)
-                self.ants(int32(i)) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);
-            end
-            
-            if scouts == 0
-                scouts = 1;
+                self.ants(int32(i)) = Ant(0, scout_energy_max, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);
             end
             
             for i = i:1:(number_of_scouts + number_of_workers)
-                self.ants(i) = Ant(0, ant_lifespan, 0, self.pos, worker_speed, worker_strength, self.id, AntType.Worker, i);
+                self.ants(i) = Ant(0, worker_energy_max, 0, self.pos, worker_speed, worker_strength, self.id, AntType.Worker, i);
             end
             
         end

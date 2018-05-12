@@ -3,9 +3,9 @@ rng(seed);
 % Values
 environment_size = 50;
 colony_count = 1;
-worker_percentage = [0.8];
+worker_percentage = [0.0];
 %[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
-colony_size = 20;
+colony_ants_energy_total = 20000;
 simulation_length  = 10000;
 number_simulations = 1;
 
@@ -24,7 +24,7 @@ for simu = 1:1:number_simulations
     
     % Simulation setup 
     tic;
-    env = Environment(environment_size, colony_count, [worker_percentage(simu)], colony_size);
+    env = Environment(environment_size, colony_count, [worker_percentage(simu)], colony_ants_energy_total);
     toc;
     
     disp('********************************');

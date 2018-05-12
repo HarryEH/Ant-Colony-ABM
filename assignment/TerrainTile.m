@@ -33,6 +33,10 @@ classdef TerrainTile < handle
                 case PheromoneType.Food
                     self.pheromone(2).level = self.pheromone(2).level + pheromone.level;
                     self.pheromone(2).addColony(id);
+                    
+                    if (self.pheromone(2).level > 35) 
+                       self.pheromone(2).level = 35; 
+                    end
             end
         end
         
