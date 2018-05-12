@@ -4,12 +4,12 @@ rng(seed);
 environment_size = 50;
 colony_count = 1;
 worker_percentage = [0.8];
-[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+%[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 colony_size = 20;
 simulation_length  = 10000;
 number_simulations = 1;
 
-RECORD = number_simulations == 1 && true;
+RECORD = number_simulations == 1 && false;
 
 if RECORD
     test = figure;
@@ -36,6 +36,14 @@ for simu = 1:1:number_simulations
         env.step(step);
         
         results(1, step, simu) = env.colonies(1).energy;
+        
+        hold on;
+            plot_food(env);
+            plot_food_pheromones(env);
+            plot_ants_colonies(env.colonies, colony_count, worker_percentage(simu), env.size, false);
+            pause(0.000001);
+            clf;
+        hold off;
 
         if RECORD
             hold on;

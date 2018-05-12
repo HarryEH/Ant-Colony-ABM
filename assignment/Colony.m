@@ -32,11 +32,11 @@ classdef Colony < handle
             
             ant_lifespan = 150;
             
-            scout_speed  = 1;
-            scout_strength = 75;
+            scout_speed = 0.36;
+            scout_strength = 30;
            
-            worker_speed = 0.18;
-            worker_strength = 100;
+            worker_speed = 0.36;
+            worker_strength = 120;
             
             for i = 1:1:scouts
                 self.ants(int32(i)) = Ant(0, ant_lifespan, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);

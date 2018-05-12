@@ -8,8 +8,11 @@ classdef Environment < handle
         colony_count; 
         environment;
         ratio;
-        food_spawn_iterations = 25;
-        food_spawn_amount = 3;
+        food_spawn_initial = 10;
+        food_spawn_iterations = 35;
+        food_spawn_amount = 1;
+        food_spawn_energy_min = 500;
+        food_spawn_energy_max = 2500;
     end
     methods
         
@@ -36,7 +39,7 @@ classdef Environment < handle
                         end
                     end 
                     
-                    a.generateFood(int32(a.size));
+                    a.generateFood(a.food_spawn_initial);
             end
         end
         
@@ -122,7 +125,8 @@ classdef Environment < handle
                 [x,y] = bound_xy(self.size, int16(rand()*self.size), ...
                                  int16(rand()*self.size));
                 
-                self.environment(x,y).food = randi([800, 3000],1,1);
+                fVal = randi([self.food_spawn_energy_min, self.food_spawn_energy_max],1,1);
+                self.environment(x,y).food = fVal;
             end
             
         end

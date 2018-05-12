@@ -33,7 +33,7 @@ classdef Ant < handle
                     a.energy   = varargin{2};% Current energy 
                     a.max_energy = varargin{2};
                     a.energy_threshold = 25;% Energy threshold before returning to nest
-                    a.energy_before_returning = a.energy / 2; % Energy before returning to nest
+                    energy_before_returning =
                     a.carrying = varargin{3};% Current amount of food that you're carrying
                     a.pos      = varargin{4};% Current position
                     a.speed    = varargin{5};% Current speed
@@ -52,6 +52,8 @@ classdef Ant < handle
             
             self.ageStep();
             
+            self.energyStep();
+            
             self.colonyActions(env);
             
             self.findFood(env);
@@ -59,8 +61,6 @@ classdef Ant < handle
             self.layPheromones(env);
             
             self.moveStep(env.size, env.colonies(self.colony).pos, env);
-            
-            self.energyStep();
             
         end
         
@@ -70,7 +70,7 @@ classdef Ant < handle
         
         function moveStep(self, size, colony_pos, env)
             if (self.carrying == 0)
-                if self.energy < self.energy_before_returning 
+                if self.energy < self.worry 
                     self.moveToColony(size, colony_pos);
                 else
                     [flag, x, y] = env.detectFoodPheromone(self.pos, self.colony);
@@ -114,6 +114,7 @@ classdef Ant < handle
                                           pos(1), pos(2));
   
             self.doMove(theta, size);
+
         end
         
         function followFood(self, size, colony_pos, x , y, env)
