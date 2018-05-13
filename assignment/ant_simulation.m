@@ -1,4 +1,4 @@
-seed = 18;
+seed = 6;
 rng(seed);
 % Values
 environment_size = 50;

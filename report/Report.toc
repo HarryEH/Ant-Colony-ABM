@@ -4,7 +4,13 @@
 \contentsline {subsection}{\numberline {2.2}Assumptions}{3}
 \contentsline {subsection}{\numberline {2.3}Experimental Setup}{4}
 \contentsline {section}{\numberline {3}Results}{5}
-\contentsline {subsection}{\numberline {3.1}Repeatability}{6}
-\contentsline {section}{\numberline {4}Discussion}{7}
-\contentsline {section}{\numberline {5}Conclusions}{8}
-\contentsline {section}{\numberline {A}Appendix Figures}{10}
+\contentsline {subsection}{\numberline {3.1}Control Results}{5}
+\contentsline {subsection}{\numberline {3.2}Main Results}{5}
+\contentsline {subsection}{\numberline {3.3}Computational Efficiency}{6}
+\contentsline {subsection}{\numberline {3.4}Repeatability}{7}
+\contentsline {section}{\numberline {4}Discussion}{8}
+\contentsline {subsection}{\numberline {4.1}Future Improvements}{8}
+\contentsline {subsection}{\numberline {4.2}Modelling Ant Colonies with an Agent Based Model}{8}
+\contentsline {section}{\numberline {5}Conclusions}{9}
+\contentsline {section}{\numberline {A}Appendix State Machines}{11}
+\contentsline {section}{\numberline {B}Appendix Computational Efficiency Profiling}{14}
