@@ -5,6 +5,8 @@
 \usepackage{titlepic}
 \usepackage{listings}
 \usepackage{subfig}
+\usepackage{siunitx}
+\usepackage{float}
 \usepackage{mathtools}
 \usepackage[parfill]{parskip}
 %\usepackage{subfigure}
@@ -26,9 +28,13 @@
   \pagenumbering{arabic}
   
   \input{sections/introduction.tex}
+  \newpage
   \input{sections/methodology.tex}
+  \newpage
   \input{sections/results.tex}
+  \newpage
   \input{sections/discussion.tex}
+  \newpage
   \input{sections/conclusion.tex}
   
   
@@ -39,6 +45,7 @@
 
   \newpage
   \begin{appendix}
+   \input{sections/figures.tex}
     \listoffigures
     \listoftables
     %\listoflists
