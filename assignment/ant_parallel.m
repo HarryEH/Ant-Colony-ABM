@@ -14,10 +14,10 @@ worker_percentage  = [0.35, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.
 % Each worker/scout ant costs a varying amount of energy
 % the total energy here is split by the the worker_percentage and then
 % distributed to set the number of worker/scout ants in the simulation
-colony_ants_energy_total = 6000;
+colony_ants_energy_total = 30;
 
 simulation_length  = 1500;
-number_experiments = 50;
+number_experiments = 1;
 
 results = zeros(1,ex);
 results_two = zeros(1,simulation_length, ex);
@@ -50,7 +50,7 @@ bar((worker_percentage*100),results/number_experiments);
 title('Average Colony Energy for each % of workers');
 xlabel('% of Energy Distributed to Major Workers');
 ylabel('Colony Energy');
-saveas(fig,'results/colony_energy_vs_percentage_final_day.png');
+saveas(fig,'colony_energy_vs_percentage_final_day.png');
 
 clf;
 
@@ -66,8 +66,8 @@ legend({'35% Workers', '0% Workers','10% Workers','20% Workers','30% Workers','4
 title('Colony Energy vs Iteration for various percentages of Energy Distributed to Major Worker Ants');
 xlabel('Iteration');
 ylabel('Colony Energy');
-saveas(fig,'results/colony_energy_vs_iteration_final_day.png');
+saveas(fig,'colony_energy_vs_iteration_final_day.png');
 
 delete(pool)
 
-save('results/sharc_env');
+save('env');

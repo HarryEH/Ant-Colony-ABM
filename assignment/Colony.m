@@ -39,8 +39,8 @@ classdef Colony < handle
             worker_energy_max = 600;
             worker_energy_usage = 4;
             
-            number_of_scouts = floor((energyTotal/scout_energy_max)*(1-ratio));
-            number_of_workers = floor((energyTotal/worker_energy_max)*(ratio));
+            number_of_scouts = floor(energyTotal*(1-ratio));
+            number_of_workers = floor(energyTotal * (ratio));
             
             for i = 1:1:(number_of_scouts + 1)
                 self.ants(int32(i)) = Ant(0, scout_energy_max, 0, self.pos, scout_speed, scout_strength, self.id, AntType.Scout, i);

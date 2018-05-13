@@ -11,7 +11,7 @@ worker_percentage = [0.35];
 % Each worker/scout ant costs a varying amount of energy
 % the total energy here is split by the the worker_percentage and then
 % distributed to set the number of worker/scout ants in the simulation
-colony_ants_energy_total = 6000;
+colony_ants_energy_total = 30;
 
 % Number of steps to run the simulation for
 simulation_length  = 1000;

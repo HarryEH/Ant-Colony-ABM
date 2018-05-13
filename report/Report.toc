@@ -3,6 +3,10 @@
 \contentsline {subsection}{\numberline {2.1}System Description}{3}
 \contentsline {subsection}{\numberline {2.2}Assumptions}{3}
 \contentsline {subsection}{\numberline {2.3}Experimental Setup}{4}
+\contentsline {subsubsection}{\numberline {2.3.1}Ants}{4}
+\contentsline {subsubsection}{\numberline {2.3.2}Experimental Values}{4}
+\contentsline {subsubsection}{\numberline {2.3.3}Experiment Description}{4}
+\contentsline {subsubsection}{\numberline {2.3.4}Repeatability}{4}
 \contentsline {section}{\numberline {3}Results}{5}
 \contentsline {section}{\numberline {4}Discussion}{6}
 \contentsline {section}{\numberline {5}Conclusions}{7}
