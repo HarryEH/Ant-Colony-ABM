@@ -3,7 +3,7 @@
 addpath(genpath(pwd));
 
 ex = 12;
-cpu = 8;
+cpu = 4;
 
 pool = parpool('local', cpu);
 
