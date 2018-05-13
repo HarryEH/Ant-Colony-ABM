@@ -1,7 +1,10 @@
 \contentsline {section}{\numberline {1}Introduction and Background}{1}
-\contentsline {section}{\numberline {2}Methodology}{2}
-\contentsline {subsection}{\numberline {2.1}System Description}{2}
-\contentsline {subsection}{\numberline {2.2}Experimental Setup \& Assumptions}{4}
-\contentsline {section}{\numberline {3}Results}{4}
-\contentsline {section}{\numberline {4}Discussion}{4}
-\contentsline {section}{\numberline {5}Conclusions}{4}
+\contentsline {section}{\numberline {2}Methodology}{3}
+\contentsline {subsection}{\numberline {2.1}System Description}{3}
+\contentsline {subsection}{\numberline {2.2}Assumptions}{3}
+\contentsline {subsection}{\numberline {2.3}Experimental Setup}{4}
+\contentsline {section}{\numberline {3}Results}{5}
+\contentsline {subsection}{\numberline {3.1}Repeatability}{6}
+\contentsline {section}{\numberline {4}Discussion}{7}
+\contentsline {section}{\numberline {5}Conclusions}{8}
+\contentsline {section}{\numberline {A}Appendix Figures}{10}

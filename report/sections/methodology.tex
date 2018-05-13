@@ -7,56 +7,35 @@
 % Use of a sensibly structured model description (e.g. the ODD protocol mentioned in the project description).
 % Clear statement of any assumptions you have made in developing your model.
  
- \subsection{System Description}
+\subsection{System Description}
  
-At the highest level our ABM consists of one agent, Ants, and an environment that contains their colony, food and then the pheromones that the ants leave behind. We have modelled two types of ants, major workers and minor workers. These are called workers, for major workers, and scouts, minor workers, in this project's code and some of the diagrams.\par
-The modelling of our agent 
+At the highest level our ABM consists of one agent, Ants, and an environment that contains their colony, food and then the pheromones that the ants leave behind. This high level behaviour is described by the state diagram Figure \ref{fig:ant-highlvl} in Appendix A. We have modelled two types of ants, major workers and minor workers. These are called workers, for major workers, and scouts, minor workers, in this project's code and some of the diagrams.\par
+The system aims to simulate colonies of ants as they forage for food in a 2-D environment. Each colony of ants exists as a single spawn point out of which ants leave to look for food. The state diagram in Figure \ref{fig:ant-exploring} found in Appendix A details this behaviour. Each tile contains a value for the strength of food pheromone for each colony. Ants can move from tile to tile to follow pheromone trails towards food. If an ant cannot see a food pheromone trail then they will explore away from the nest for new food sources or food pheromone trails to follow. As can be seen in Appendix A Figure \ref{fig:ant-return-nest} Ants will reinforce a pheromone trail when they return to the nest with food. Over time these pheromone trails will decay. This is described by Robinson's journal article \cite{Robinson2008} which details the decay rates of varying types of pheromones in ants' foraging networks. Ants will only reinforce those food pheromone trails that they find food at the end of.\par
+
+ \subsection{Assumptions}
+An assumption made was to not model factors that affect ant speed. One example is ant encounters, this being where two ants move over each other and cause a slowdown. The reasoning for this was that as according to one study `direct or interaction effects, has a much smaller effect on walking velocity than does body size' \cite{Burd2003}, therefore the speed of an ant is determined entirely by their body size, which is given as the most important factor. Another example is ant size, we are assuming that ants of all sizes move at the same rate.\par
+Additionally, although ants were modelled to have continuous locations, the environment is grid based and so pheromone trails were located by their tile position. The purpose of this model is that it finds statistical patterns based on the proportion of scout/worker ant populations in each colony, therefore, it is not important that the entire system is modelled in a way that is physically accurate on a ground level, rather that the simulation provides results which are statistically representative of ant colony behaviour.\par 
+The properties of food were assumed. The two main assumptions that were made here were the generation rate of the food and the decay rate of the food. The generation of the food was done by starting with $n$ tiles of food and then generating $n$ tiles of food in random places in the environment every $n$ iterations. The decay rate of the food was not implemented so food was assumed to exist from creation until it was used up by the Ants. Another, food based, assumption that was made was that food remained in the same place as it was generated.\par
  
- \begin{figure}[htb]
-  \label{fig:ant-highlvl}
+ \subsection{Experimental Setup}
+ This sub-section outlines the various parameters used in our experimentation. It starts by detailing the values used for this models agents, two types of Ant. Where values have been taken from literature, they are clearly cited. Any values that have been assumed have been described in the sub-section above.\par
+The two types of ant are Major workers and Minor Workers. We are modelling them using four parameters: speed, strength max energy level and energy use per iteration. The values for each of these are in table \ref{tab:ant-parameters}. The Speed value comes from the journal article \cite{Burd2003} and the fact that they are the same has already been explained. The values for the minor worker's strength, maximum energy level and energy use per iteration were arbitrarily chosen. However, we used literature to scale the difference between the minor worker and major worker. Tschinkel's journal article \cite{Tschinkel1988} states that the average major worker's size is 4 times that of a minor worker. We then took this and applied it to the characteristics as seen in table \ref{tab:ant-parameters}.
+
+\begin{table}[htb]
   \centering
-  \includegraphics[width=0.5\textwidth]{images/top-level.png}
-  \caption{High Level State Diagram for the Ant}
-\end{figure}
+  \caption{This table details the parameters used for each ant in our experimentation}
+  \label{tab:ant-parameters}
+  \begin{tabular}{@{}crrrr@{}}
+  \toprule
+  Ant Type     & \multicolumn{1}{c}{Speed (\si{mm.s^{-1}})} & \multicolumn{1}{c}{Max Energy Level} & \multicolumn{1}{c}{Energy Use \si{Iteration^{-1}}} & \multicolumn{1}{c}{Strength} \\ \midrule
+  Major Worker & 51.9                             &  600                                    & 4     & 120                                    \\ \midrule
+  Minor Worker & 51.9                              & 150                                     & 1    & 30                                     \\ \bottomrule
+  \end{tabular}
+\end{table}
 
-\begin{figure}[htb]
-  \label{fig:ant-highlvl}
-  \centering
-  \includegraphics[width=1\textwidth]{images/exploring.png}
-  \caption{High Level State Diagram for the Ant}
-\end{figure}
-
-\begin{figure}[htb]
-  \label{fig:ant-highlvl}
-  \centering
-  \includegraphics[width=0.4\textwidth]{images/inside-nest.png}
-  \caption{High Level State Diagram for the Ant}
-\end{figure}
-
-\begin{figure}[htb]
-  \label{fig:ant-highlvl}
-  \centering
-  \includegraphics[width=0.5\textwidth]{images/nest-return.png}
-  \caption{High Level State Diagram for the Ant}
-\end{figure}
-
-The system aims to simulate colonies of ants as they forage for food in a 2d environment. Each colony of ants exists as a single spawn point out of which ants leave to look for food. Each tile contains a value for the strength of food pheromone for each colony. Ants can move from tile to tile to follow pheromone trails towards food. If an ant cannot see a food pheromone trail then they will explore away from the nest for new food sources or food pheromone trails to follow. Ants will reinforce a pheromone trial when they return to the nest with food. To prevent ants being led to depleted food sources, over time these pheromone trails will decay as ants will only reinforce those food pheromone trails that they find food at the end of. 
-
-There exists in this simulation two types of ants, the worker and the scout. The worker ant is capable of carrying more food when it forages and the scout ant cannot carry as much but can move at a slightly faster speed. The simulation can then be configured for each colony to have different proportions of worker and scout ants. 
-
-Timesteps - every 1 minute
-Tile Size - 1m x 1m 
-Scout Ant Speed - 0.5 meters per minute (8.3 mms-1)
-Worker Ant Speed - 0.36 meters per minute (6 mms-1 [source 1]) 
-
-Assumptions made throughout this model include the assumption that a scout ant moves at a speed which is scaled on the speed we found documented of the worker ant (6 mms-1) [source 1]. Due to the diversity of ant movement speeds, the speed of a scout from one species of ant cannot be compared to the speed of a worker from another. By knowing that scout ants move faster however, scaling the worker ant speed gives an approximation of the speed a scout ant of that species would have. Additionally, although ants were modelled to have continuous locations, the environment is grid based and so pheromone trails were located by their tile position. The purpose of this model is that it finds statistical patterns based on the proportion of scout/worker ant populations in each colony, therefore, it is not important that the entire system is modelled in a way that is physically accurate on a ground level, rather that the simulation provides results which are statistically representative of ant colony behaviour. 
-
-Another assumption made was to not model ant encounters, this being where two ants move over each other and cause a slowdown. The reasoning for this was that as according to one study ?direct or interaction effects, has a much smaller effect on walking velocity than does body size? [source 2], therefore the speed of an ant is determined entirely by their body size, which is given as the most important factor. The speed of each ant is determined by them being either the larger and slower worker ant, or the faster but smaller scout ant.
-
- 
- \subsection{Experimental Setup \& Assumptions}
-
-
+As detailed in the introduction with reference to W. R. Tschinkel's journal \cite{Tschinkel1988}, minor workers typically make up 65\% of the worker population and major workers make up just 35\%. Our project is investigating how minor worker vs major worker distributions affect colony energy. Hence our experimentation is going to be focusing on changing the amount of major workers in the colony to find the optimum for our colony.The values, percentage of major worker ant, used in experimentation were 35\% and 0\% to 100\% with a step size of 10.\par
+ The length of each simulation is 1200 iterations. In real world terms an iteration is 1 minute, this means our simulation is running for 20hours. We allow the ants to move 1 step each iteration at a pace of 51.9\si{mm.s^{-1}}. Hence the size of a tile is 3.1\si{m} by 1\si{m}. The environment is set to a fixed 50x50 tiles therefore the area that our experimentation is covering is 24025\si{m^2} (155\si{m} by 155\si{m}).\par
+ To produce our results 50 runs, with 50 separate seeds (1:50), for each percentage of major worker ant were done.\par
 
 % Things to remember:
 % - We have to explain how we've decided on major ants being able to carry additional food based on the fire ants paper by Tschinkel, and why we've chosen that difference
