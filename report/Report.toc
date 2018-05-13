@@ -4,6 +4,7 @@
 \contentsline {subsection}{\numberline {2.2}Assumptions}{3}
 \contentsline {subsection}{\numberline {2.3}Experimental Setup}{4}
 \contentsline {section}{\numberline {3}Results}{5}
-\contentsline {section}{\numberline {4}Discussion}{6}
-\contentsline {section}{\numberline {5}Conclusions}{7}
-\contentsline {section}{\numberline {A}Appendix Figures}{9}
+\contentsline {subsection}{\numberline {3.1}Repeatability}{6}
+\contentsline {section}{\numberline {4}Discussion}{7}
+\contentsline {section}{\numberline {5}Conclusions}{8}
+\contentsline {section}{\numberline {A}Appendix Figures}{10}
