@@ -16,7 +16,7 @@ classdef Ant < handle
         strength;
         colony;
         type;
-        pheromone_span = 10;
+        pheromone_span = 25;
         pheromones_visited;
         iter = 1;
     end
@@ -198,7 +198,7 @@ classdef Ant < handle
             % Ant position                         
             [ant_x, ant_y] = convert_pos(self.pos(1), self.pos(2));
             if ( c_x == ant_x && c_y == ant_y && ...
-                 self.energy + self.energy_threshold < self.max_energy)
+                self.energy + self.energy_threshold < self.max_energy)
                 
                 if self.carrying ~= 0
                     self.resetPheromoneVisited(env);

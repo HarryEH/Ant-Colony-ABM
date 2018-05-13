@@ -8,8 +8,8 @@ classdef Environment < handle
         colony_count; 
         environment;
         ratio;
-        food_spawn_initial = 24;
-        food_spawn_iterations = 60;
+        food_spawn_initial = 34;
+        food_spawn_iterations = 50;
         food_spawn_amount = 4;
         food_spawn_energy_min = 800;
         food_spawn_energy_max = 4000;

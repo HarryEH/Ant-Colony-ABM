@@ -5,18 +5,17 @@ environment_size = 50;
 colony_count = 1;
 
 % Percentage of energy of colony that is distributed to be worker ants
-worker_percentage = [0.35];
-[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+worker_percentage = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 
 % Each worker/scout ant costs a varying amount of energy
 % the total energy here is split by the the worker_percentage and then
 % distributed to set the number of worker/scout ants in the simulation
-colony_ants_energy_total = 6000;
+colony_ants_energy_total = 500;
 
 % Number of steps to run the simulation for
-simulation_length  = 1000;
+simulation_length  = 1;
 
-number_simulations = 1;
+number_simulations = 11;
 
 RECORD = number_simulations == 1 && true;
 
