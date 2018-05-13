@@ -1,19 +1,17 @@
 \begin{abstract}
- 
-  %\section*{Abstract}
-    %%% NOTE: "The focus of this paper is to examine how different castes in the thing do the things.
     %Background
     Ant colonies have the unique ability to dynamically search the terrain surrounding their environments, detect and retrieve sources of food. This is an emergent behaviour that
-    has been well well explored by a variety of past studies \cite{camazine_self-organization_2003} %TODO: Add more citations here.
-    often with a focus on examining the way that paths to and from food sources are created and organised. %TODO: More reference to this particular thing here.
+    has been well explored by a variety of past studies \cite{camazine_self-organization_2003, Burd2003, Robinson2008, HERBERS1996141, vittori_modeling_2004, a_panait_ant_2004}
+    often with a focus on examining the way that paths to and from food sources are created and organised\cite{a_panait_ant_2004, a_panait_learning_2018, vittori_modeling_2004}.
     In reality, many species of ants have a number of different castes of ants within their ranks \cite{noauthor_caste_nodate}. This study examines what affect different distributions
-    of two castes of ants in particular -- the \textit{minor-} and \textit{major-worker} ants -- within a colony have on that colony's overall health when faced with differing conditions.\par
-    %Methods                                                                      v TODO here? Discuss specifics of descretisation (size, sector size)
-    Ant colonies are simulated in Matlab on train that has been descritised into chunks, and food is spawned randomoly throughout the terrain. Ant colonies with differing ratios of simulated
-    minor and major worker ants are created, and their success -- as measured by [MEASUREMENT HERE].%TODO: What are we measuring for colony health? Population size? Total energy gathered? Average Energy over a timeframe?
+    of two castes of ants in particular -- the \textit{minor-} and \textit{major-} -- worker ants within a colony have on that colony's overall health when faced with differing conditions.
+
+    %Methods
+    An ant colony is simulated in Matlab on terrain that has been descritised into chunks, and food is spawned randomoly throughout the terrain. Ant colonies with differing ratios of simulated
+    minor and major worker ants are created, and their success -- as measured by the total energy collected from spawned food sources -- is plotted against these ratios in order to attempt
+    to identify the most sucessful distribution of minor and major worker ants.
+
     %Results
-    We found that [FINDINGS HERE]
-    %Conclusions                                                          v TODO: At this point, I'm just guessing
-    These findings indicate that [INSIGHT INTO ANTS HERE], indicating that a mix of major and minor workers is the most suitable -- with the minor workers excelling at [SOMETHING?] while the
-    major workers [DO SOMETHING ELSE], as seen in nature [CITE THIS ACTUALLY HAPPENING - Or, I guess don't if it doesn't really happen and just state that our model was wrong.]
-  \end{abstract}
+    We found that our model seemed to emulate the behaviour of ant colonies in the real world, with the model indicating that a ratio of around 35\% minor to 65\% major worker ants is the most
+    successful, reflecting the average distribution of minor to major worker ants seen in real-world mature nests as mesured in a previously published work\cite{Tschinkel1988}.
+\end{abstract}
