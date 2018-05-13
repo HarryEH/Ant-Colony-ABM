@@ -16,7 +16,7 @@ worker_percentage  = [0.35, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.
 % distributed to set the number of worker/scout ants in the simulation
 colony_ants_energy_total = 6000;
 
-simulation_length  = 1000;
+simulation_length  = 1500;
 number_experiments = 50;
 
 results = zeros(1,ex);
