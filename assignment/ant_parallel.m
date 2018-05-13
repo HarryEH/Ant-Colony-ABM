@@ -3,7 +3,7 @@
 addpath(genpath(pwd));
 
 ex = 12;
-cpu = 8;
+cpu = 4;
 
 pool = parpool('local', cpu);
 
@@ -17,7 +17,7 @@ worker_percentage  = [0.35, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.
 colony_ants_energy_total = 30;
 
 simulation_length  = 1200;
-number_experiments = 25;
+number_experiments = 5;
 
 results = zeros(1,ex);
 results_two = zeros(1,simulation_length, ex);
