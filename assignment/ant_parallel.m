@@ -9,7 +9,7 @@ pool = parpool('local', cpu);
 environment_size   = 50;
 colony_count       = 1;
 % Percentage of energy of colony that is distributed to be worker ants
-worker_percentage  = [0.35, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+worker_percentage  = [0.2, 0.25, 0.3, 0.35, 0.40, 0.45, 0.5, 0.55, 0.60];
 ex = length(worker_percentage);
 
 % Each worker/scout ant costs a varying amount of energy
@@ -62,8 +62,8 @@ for i = 1:1:ex
     plot(results_two(:,:,i)/number_experiments,'Color',cols(i,:));
 end
 
-legend({'35% Workers', '0% Workers','10% Workers','20% Workers','30% Workers','40% Workers', '50% Workers',...
-    '60% Workers','70% Workers','80% Workers','90% Workers','100% Workers'}, 'Location','northwest');
+legend({'20% Workers', '25% Workers','30% Workers','35% Workers','40% Workers','45% Workers', '50% Workers',...
+    '55% Workers','60% Workers'}, 'Location','northwest');
 
 title('Colony Energy vs Iteration for various percentages of Energy Distributed to Major Worker Ants');
 xlabel('Iteration');
