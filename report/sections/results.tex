@@ -8,16 +8,15 @@ To test our system had the expected behaviour we ran a set of simulations with n
 
 As already described, the length of each simulation is 1200 iterations and the environment is set to a fixed 50x50 tiles for each run. The independent variable of this experiment is the percentage of major and minor workers. Given the stochasticity in our system, we took the average of 5 runs, with 5 separate seeds (1:5), for value in the experimentation. The average runtime of each run in an experiment was 63\si{s}. However all of the results were generated using Matlab's parallelisation ability where multi-core CPUs can be leveraged (more detail on this in Appendix D).\par
 The results of our experimentation can be seen in the line graph in figure \ref{fig:iters-line}. There are 12 lines on this plot, 35\% represents the `natural system' value taken from the literature \cite{Tschinkel1988} and the rest 0-100\% in steps of 10 represent our experimental values. As you can see in the figure \ref{fig:iters-line} the natural system produces the 'best' result in terms of overall colony energy. This can also be seen in the bar chart of the same data found in Appendix C figure \ref{fig:iters-bar}.\par
+This positive result around the value that the internationally renowned Professor Tschinkel's journal article \cite{Tschinkel1988} motivated further experimentation around the values between 30\% and 40\% of the colony being major workers. The values for this experiment were \{30\%, 32\%, 35\%, 38\%, 40\%\} The results for this are in the bar chart in figure \ref{fig:bar-chart-detail}. We were expecting a distribution that looked Gaussian around 35\% but this shows that the peak for our model is at 32\%.\par
+A visualisation of our system can be viewed at \url{https://www.youtube.com/watch?v=tgsPYGt2TbI}. This is at the optimal ratio of major:minor workers for our system of 32:68 and runs for 1200 iterations which equates to 20 hours.\par
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{images/line-graph-results.png}
+  \includegraphics[width=0.8\textwidth]{images/line-graph-results.png}
   \caption{Line graph depicting colony energy against iterations (time) for various percentages of Major Worker Ant.}
   \label{fig:iters-line}
 \end{figure}
-
-This positive result around the value that the internationally renowned Professor Tschinkel's journal article \cite{Tschinkel1988} motivated further experimentation around the values between 30\% and 40\% of the colony being major workers. The values for this experiment were \{30\%, 32\%, 35\%, 38\%, 40\%\} The results for this are in the bar chart in figure \ref{fig:bar-chart-detail}. We were expecting a distribution that looked Gaussian around 35\% but this shows that the peak for our model is at 32\%.\par
-A visualisation of our system can be viewed at \url{https://www.youtube.com/watch?v=tgsPYGt2TbI}. This is at the optimal ratio of major:minor workers for our system of 32:68 and runs for 1200 iterations which equates to 20 hours. 
 
 \begin{figure}[H]
   \centering
