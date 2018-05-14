@@ -1,6 +1,6 @@
 \section{Repeatability}
 
-Given the nature of this simulation it is important that our results are repeatable. This is, obviously, the case for this project. We used `rng(seed)' with a seed value to set the seed. For an example of the repeatability, run `simple\_example' exactly as it has been handed in. Although if you have changed parameters, use the values in the table \ref{tab:repeat}. This will give you a value of `6530' displayed in the console and saved to 'final\_energy'. Hence, as you can see we have repeatable results.\par
+Given the nature of this simulation it is important that our results are repeatable. This is, obviously, the case for this project. We used `rng(seed)' with a seed value to set the seed used for generating random numbers. For an example of the repeatability, run `simple\_example' exactly as it has been handed in. Although if you have changed parameters, use the values in the table \ref{tab:repeat}. This will give you a value of `6530' displayed in the console and saved to 'final\_energy'. Hence, as you can see we have repeatable results.\par
 
 \begin{table}[htb]
 \centering
@@ -19,4 +19,4 @@ simulation\_length & 1200  \\ \bottomrule
 \end{table}
 
 
-To get the graphs that we have produced, we ran the experiments in parallel. If you run `ant\_parallel' you will be able to generate exactly the same graphs. However, if you don't have a quad core processor you may have to change `cpu = 4;' to something a better value for you. If you don't want to run in parallel then set this to `cpu = 1'. However this will take you a while.\par
+To get the graphs that we have produced, we ran the experiments in parallel. If you run `ant\_parallel' you will be able to generate exactly the same graphs. However, if you don't have a quad core processor you may have to change `cpu = 4;' to something that is a better value for you. If you don't want to run in parallel then set this to `cpu = 1'. However, this will will increase the time it takes for simulations to finish.\par
