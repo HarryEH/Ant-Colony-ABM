@@ -2,6 +2,7 @@ addpath(genpath(pwd));% Make sure everything is on the path.
 % Not an issue for us because of our startup.m that I gave you all but
 % for the hand-in.
 
+% Set the seed for repeatability.
 seed = 2;
 rng(seed);
 
@@ -9,12 +10,12 @@ environment_size = 50;% number of tiles. this is squared.
 colony_count = 1;% Number of colonies in the environment
 
 % Percentage of energy of colony that is distributed to be worker ants
-worker_percentage = 0.32;
+worker_percentage = 0.5;
 
 % Each worker/scout ant costs a varying amount of energy
 % the total energy here is split by the the worker_percentage and then
 % distributed to set the number of worker/scout ants in the simulation
-colony_ants_energy_total = 30;
+colony_ants_total = 30;
 
 % Number of steps to run the simulation for
 simulation_length  = 1200;

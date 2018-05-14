@@ -30,6 +30,8 @@ for step = 1:1:simulation_length
     env.step(step);
 end
 toc;
+
+final_energy = env.colonies(1).energy;
     
 disp('*************************');
 disp('**Colony Energy**********');
@@ -37,5 +39,5 @@ disp(env.colonies(1).energy);
 disp('*************************');
 
 % Clear vars
-clear environment_size colony_count colony_ratios colony_size ...
-simulation_length step RECORD v frame test;
+clear seed env environment_size colony_count colony_ratios colony_ants_total ...
+simulation_length step RECORD v frame test worker_percentage;
