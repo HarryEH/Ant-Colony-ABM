@@ -2,10 +2,10 @@
   	%% Main Aim
 		
     % Little bit on what it is about ant colonies that we want to work with
-    Ants are \textit{eusocial} creatures, meaning that they possess the highest level of organisation that any social species of animal can possess\cite{wilson_insect_1971, hadley_what_nodate}. Behaviour allows them to perform
+    Ants are \textit{eusocial} creatures, meaning that they possess the highest level of organisation that any social species of animal can possess\cite{wilson_insect_1971, hadley_what_nodate}. Collectively their behaviour allows them to perform
     incredible feats as a whole, even when individually each ant has very little actuation over it's environment. One such example of this is an ant colony's ability to forage for food from its surrounding area, while avoiding
     obstacles and successfully navigating changes in its environment. This ability in itself has been examined a significant amount in past research\cite{vittori_modeling_2004, a_panait_ant_2004}, and has even lead to algorithmic
-    methods inspired by the behaviour being developed to solve problems faced in areas of computer science, such as those similar to the \textit{travelling salesmant problem}\cite{dorigo_ant_2006, zhang_improved_2007}.
+    methods inspired by the behaviour being developed to solve problems faced in areas of computer science, such as those similar to the \textit{travelling salesman problem}\cite{dorigo_ant_2006, zhang_improved_2007}.
 
     Another characteristic of eusocial creatures -- and the focus of our own investigation -- is the separation of groups within the colony into differing \textit{castes} that exhibit specialized behaviour, making them more fit
     for certain types of jobs over others of their colony\cite{hadley_what_nodate}. Ants in particular are often divided into up to four differing casts: Queens, Minor Workers (Workers), Major Workers (Soldiers) and Drones\cite{noauthor_ant_nodate,noauthor_castes_nodate}.
@@ -21,34 +21,34 @@
 
     % Perhaps a little bit about ABMs here.
     Agent based models are models, typically of natural systems, that simulate the system they are modelling through the use of individual \textit{agents}. As opposed to mathematical models that aim to simulate
-    a system by generalizing the behaviour of potentially many components into few mathematically described expressions (such as population over time, or growth rate with food consumed), agent based models simulate
+    a system by generalizing the behaviour of potentially many components into a few mathematically described expressions (such as population over time, or growth rate with food consumed), agent based models simulate
     each component individually and the interactions between them\cite{8}, allowing them to simulate potentially unexpected emergent behaviour that is hard to describe using mathematical approaches -- this makes them
     particularly useful when evaluating complex systems that exhibit strong emergent behaviour such as the flocking of birds or, as in our case, the retrieval of food exhibited by ant colonies.
     
     % Explaining how other studies often use ACO to solve problems
     A number of past studies have examined the way that ant colonies search their surrounding areas to locate and retrieve food \cite{vittori_modeling_2004, a_panait_ant_2004}.
     Often the these studies focus on simulating ant colonies to apply the emergent behaviour that they exhibit to solve abstracted technical
-    problems \cite{dorigo_ant_2006, zhang_improved_2007}, with seemingly a smaller number of past works focusing on simulating ant colony behaviour as it is seen in nature \cite{vittori_modeling_2004} %TODO: Perhaps cite some more things here
+    problems \cite{dorigo_ant_2006, zhang_improved_2007}, with a seemingly smaller number of past works focusing on simulating ant colony behaviour as it is seen in nature \cite{vittori_modeling_2004} %TODO: Perhaps cite some more things here
     
     % Perhaps introduce 7 here. (Less needed because vittori_modeling_2004 is a pretty good comparison work anyway)
 
-    The 2004 work by Vittori et al.\cite{vittori_modeling_2004} examined the way that ants navigate their environment, using trails of depositied pheromones which attract other ants from the colony toward food or back
-    to the colony. This work in particular was of interest to us, as it evaluated the results of the model by comparing them to real ants in a number of experiments. Vittori et al implement a very reduced model for
-    their simulation that allowed each ant to only allowed to move through a relatively small graph of varous positions, with each node having a reference to a real-world counterpart and ant behaviour when deciding
-    which path to take not only being based on pheromone depositions but also paritially on the angle at which the ant would have to move through to get to the next node. The model also introduced restrictions to
-    certain actions that the ants could take, such as the a maximum number of U-turns an ant could perform on a long branch, allowing the ants a way to backtrack in a similar way to observed behaviour in real ants but
+    The 2004 work by Vittori et al.\cite{vittori_modeling_2004} examined the way that ants navigate their environment, using trails of deposited pheromones which attract other ants from the colony toward food or back
+    to the colony. This work in particular was of interest to us, as it evaluated the results of the model by comparing them to real ants in a number of experiments. Vittori et al implemented a very reduced model for
+    their simulation that allowed each ant to only move through a relatively small graph of various positions, with each node having a reference to a real-world counterpart and ant behaviour when deciding
+    which path to take not only being based on pheromone depositions, but also partially on the angle at which the ant would have to move through to get to the next node. The model also introduced restrictions to
+    certain actions that the ants could take, such as the a maximum number of U-turns an ant could perform on a long branch, allowing the ants a way to backtrack in a similar way to observed behaviour in real ants, while 
     not allowing them to get caught in a repeated loop of U-turns.
 
     %\cite{a_panait_learning_2018} discusses the benefits of simulating the ant's return path using pheromones or simply having the ants return directly
     
-    Panait et al. introudces the concept of a dual-pheromone system in ``Ant Foraging Revisited''\cite{a_panait_ant_2004} demonstrating the use of a two-pheromone system allowing for learning of paths to both food sources
-    and the colony's nest. This is an alternative to many pervious systems that used ingrained knowledge within each ant or the environment itself to direct returning ants toward the nest. It appears to have the benefit % TODO: Cite the many autoreturning?
-    of better mirroring real-world ants, but does increase total the complexity of the system.
+    Panait et al. introduces the concept of a dual-pheromone system in ``Ant Foraging Revisited''\cite{a_panait_ant_2004} demonstrating the use of a two-pheromone system allowing for learning of paths to both food sources
+    and the colony's nest. This is an alternative to many previous systems that used ingrained knowledge within each ant or the environment itself to direct returning ants toward the nest. It appears to have the benefit % TODO: Cite the many autoreturning?
+    of better mirroring real-world ants, but does also increase the total complexity of the system.
     %TODO: I'm not sure whether this bit below is worth having: -- TODO: It is worth having, but we've got to change it based on which method we use in the code
-    % Describe how we could use the sort of methods imployed by vittori_modeling_2004 to get it back (culling of pheromone trails already seen etc) or by using the dual pheromone system.
+    % Describe how we could use the sort of methods employed by vittori_modeling_2004 to get it back (culling of pheromone trails already seen etc) or by using the dual pheromone system.
     Comparing the dual-pheromone method explored by Panait et al.\cite{a_panait_ant_2004} with the more direct methods of behaviour coding described by Vittori et al.\cite{vittori_modeling_2004}, it can be seen that there
     benefits to both systems. Vittori et al. often choose to simplify ant behaviour, resulting in faster models that still appear to reflect behaviour exhibited in the real world, %TODO: Cite that the Panait system is faster maybe?
-    whereas Panait et al. opt for more realistic real-world behvaiours based on the assumption that the ants have no intrinsic knowledge of their environment.
+    whereas Panait et al. opt for more realistic real-world behaviors based on the assumption that the ants have no intrinsic knowledge of their environment.
     
     %TODO: This last line is super iffy, will need to re-write it.
     However, there are examples of ant species such as desert ants that can find their way back to their nest seemingly using `natural pedometers'\cite{9}, lending support to the idea of modelling a system in which 
