@@ -15,5 +15,5 @@
 \contentsline {section}{\numberline {5}Conclusions}{8}
 \contentsline {section}{\numberline {A}Appendix State Machines}{10}
 \contentsline {section}{\numberline {B}Appendix Computational Efficiency Profiling}{13}
-\contentsline {section}{\numberline {C}Appendix for Figures for Results Section}{13}
-\contentsline {section}{\numberline {D}Repeatability}{14}
+\contentsline {section}{\numberline {C}Appendix for Figures for Results Section}{14}
+\contentsline {section}{\numberline {D}Repeatability}{15}
