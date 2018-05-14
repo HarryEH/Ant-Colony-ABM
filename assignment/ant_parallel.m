@@ -9,14 +9,14 @@ pool = parpool('local', cpu);
 environment_size   = 50;
 colony_count       = 1;
 % Percentage of energy of colony that is distributed to be worker ants
-worker_percentage  = [0.30, 0.31, 0.32, 0.33, 0.34, 0.35, 0.36, 0.37, 0.38, 0.39, 0.40];
+worker_percentage  = [0.30, 0.32, 0.35, 0.38, 0.40];
 ex = length(worker_percentage);
 
 %[0.35, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
 % Each worker/scout ant costs a varying amount of energy
 % the total energy here is split by the the worker_percentage and then
 % distributed to set the number of worker/scout ants in the simulation
-colony_ants_energy_total = 100;
+colony_ants_energy_total = 30;
 
 simulation_length  = 1200;
 number_experiments = 5;

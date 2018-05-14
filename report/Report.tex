@@ -1,6 +1,6 @@
 \documentclass[11pt,oneside,titlepage]{article}
 
-\usepackage[margin=1.25in]{geometry}
+\usepackage[margin=1.1in]{geometry}
 \usepackage{graphicx}
 \usepackage{titlepic}
 \usepackage{listings}
@@ -33,15 +33,10 @@
   \pagenumbering{arabic}
   
   \input{sections/introduction.tex}
-  \newpage
   \input{sections/methodology.tex}
-  \newpage
   \input{sections/results.tex}
-  \newpage
   \input{sections/discussion.tex}
-  \newpage
   \input{sections/conclusion.tex}
-  
   
   % BIBLIOGRAPHY AND APPENDIX
   \newpage
@@ -52,9 +47,8 @@
   \begin{appendix}
    \input{sections/figures.tex}
     \input{sections/figures2.tex}
-    %\listoflists
-    \section*{Listings}
-      %% We can put listings in here
+    \input{sections/figures3.tex}
+    \input{sections/repeatability.tex}
   \end{appendix}
   
 \end{document}

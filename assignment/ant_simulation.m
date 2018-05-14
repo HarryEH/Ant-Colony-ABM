@@ -1,12 +1,15 @@
-seed = 6;
+addpath(genpath(pwd));% Make sure everything is on the path.
+% Not an issue for us because of our startup.m that I gave you all but
+% for the hand-in.
+
+seed = 2;
 rng(seed);
-% Values
-environment_size = 50;
-colony_count = 1;
+
+environment_size = 50;% number of tiles. this is squared.
+colony_count = 1;% Number of colonies in the environment
 
 % Percentage of energy of colony that is distributed to be worker ants
-worker_percentage = [0.35];
-[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
+worker_percentage = [0.32];
 
 % Each worker/scout ant costs a varying amount of energy
 % the total energy here is split by the the worker_percentage and then
@@ -14,7 +17,7 @@ worker_percentage = [0.35];
 colony_ants_energy_total = 30;
 
 % Number of steps to run the simulation for
-simulation_length  = 1000;
+simulation_length  = 1200;
 
 number_simulations = 1;
 
@@ -63,23 +66,6 @@ for simu = 1:1:number_simulations
     
     toc;
 end
-
-
-fig = figure;
-set(fig, 'Visible', 'on');
-hold on;
-cols = distinguishable_colors(11);
-for i = 1:1:number_simulations
-    plot(results(:,:,i),'Color',cols(i,:));
-end
-
-legend({'0% Workers', '10% Workers','20% Workers','30% Workers','40% Workers', '50% Workers',...
-    '60% Workers','70% Workers','80% Workers','90% Workers', '100% Workers'}, 'Location','northwest');
-title('Colony Energy vs Iteration for various percentages of Worker Ant');
-xlabel('Iteration');
-ylabel('Colony Energy');
-% saveas(fig,'colony_energy_vs_iteration.png');
-
 
 if RECORD
     close(v);
