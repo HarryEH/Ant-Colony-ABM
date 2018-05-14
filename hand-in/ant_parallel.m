@@ -2,7 +2,7 @@
 %Ensure that this is the same number as what you requested from the scheduler
 addpath(genpath(pwd));
 
-cpu = 8;
+cpu = 4;
 
 pool = parpool('local', cpu);
 
