@@ -36,7 +36,7 @@ for simu = 1:1:number_simulations
     
     % Simulation setup 
     tic;
-    env = Environment(environment_size, colony_count, [worker_percentage(simu)], colony_ants_energy_total);
+    env = Environment(environment_size, colony_count, worker_percentage(simu), colony_ants_energy_total);
     toc;
     
     disp('********************************');

@@ -2,7 +2,7 @@
 %Ensure that this is the same number as what you requested from the scheduler
 addpath(genpath(pwd));
 
-cpu = 8;
+cpu = 4;
 
 pool = parpool('local', cpu);
 
@@ -18,7 +18,7 @@ ex = length(worker_percentage);
 colony_ants_energy_total = 30;
 
 simulation_length  = 1200;
-number_experiments = 100;
+number_experiments = 10;
 
 results = zeros(1,ex);
 results_two = zeros(1,simulation_length, ex);
