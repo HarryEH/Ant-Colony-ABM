@@ -1,9 +1,6 @@
-# ms-assignment
-Repository for the modelling assignment
+# Ant colony agent based model
+Agent based model of ant colony. Used to investigate colonies.
 
 
-## changes
-- write conclusion
-- write readability section
-- comment code 
-- include code documentation: ie make sure assignment directory is entirely self contained.
+## How to run
+Open matlab in this directory. startup.m will run adding everything to the path, then run `simple_example.m` from the matlab console.
