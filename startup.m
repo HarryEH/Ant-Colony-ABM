@@ -7,10 +7,9 @@ if (isempty(user))
 end
 
 disp("*******************************************");
-disp("* Welcome to your M&S Assignment Directory");
+disp("* Welcome to this Ant Colony ABM");
 disp("* User is: "+ user);
-days = daysact(datetime('today'),'05/14/2018');
-disp("* Days till assignment due: "+ days);
+disp("* Date today: "+ datetime('today'));
 disp("*******************************************");
 
 clear user; clear days;
