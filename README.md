@@ -1,5 +1,7 @@
 # Ant colony agent based model
-Agent based model of ant colony. Used to investigate colonies.
+Agent based model of ant colony. Used to investigate colonies and their interactions with their environments.
+
+![Gif of System in action](ants.gif)
 
 
 ## How to run
